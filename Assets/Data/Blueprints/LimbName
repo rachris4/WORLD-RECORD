@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SubTypeIdList />
+  <blueprintSubTypeIdList />
+  <BlockDefinitions />
+  <ChassisDefinitions />
+  <Blueprints>
+    <Blueprint TypeID="Limb">
+      <SubTypeID>LimbName</SubTypeID>
+      <Blocks>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <isSolid>true</isSolid>
+          <collider>box</collider>
+          <blockSprite>
+            <name>block</name>
+            <hideFlags>None</hideFlags>
+          </blockSprite>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="-1" />
+          <rotation>0</rotation>
+          <transformScale x="0" y="0" z="0" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <isSolid>true</isSolid>
+          <collider>toptwoslope</collider>
+          <blockSprite>
+            <name>toptwoslope</name>
+            <hideFlags>None</hideFlags>
+          </blockSprite>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="0" y="0" z="0" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_bot</SubTypeID>
+          <DisplayName>2x1 Slope Bottom</DisplayName>
+          <isSolid>true</isSolid>
+          <collider>bottwoslope</collider>
+          <blockSprite>
+            <name>bottwoslope</name>
+            <hideFlags>None</hideFlags>
+          </blockSprite>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="0" y="0" z="0" />
+        </Block>
+      </Blocks>
+    </Blueprint>
+  </Blueprints>
+</Definitions>

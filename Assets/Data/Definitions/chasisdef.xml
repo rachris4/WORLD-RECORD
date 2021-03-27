@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ChassisDefinitions>
+    <ChassisDefinition TypeID="Robot">
+      <SubTypeID>human_after_all</SubTypeID>
+      <DisplayName>Daft Punk</DisplayName>
+      <BodyParts>
+        <BodyPart limbName="HumanHead">
+          <maxWidth>20</maxWidth>
+          <maxLength>30</maxLength>
+          <position x="2" y="3"/>
+          <VisualLayer>-1</VisualLayer>
+          <Flippable>false</Flippable>
+          <Controller ControllerType ="MouseTrack">
+             <StrengthMod>300</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>
+        </BodyPart>
+        <BodyPart limbName="HumanTorso">
+          <maxWidth>30</maxWidth>
+          <maxLength>40</maxLength>
+          <position x="0" y="0"/>
+          <VisualLayer>0</VisualLayer>
+          <Flippable>false</Flippable>
+           <Controller ControllerType ="GravityAlign">
+             <StrengthMod>5000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>1</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>          
+          <BodyConnectors>
+            <BodyConnector jointName ="Neck" childName = "HumanHead">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="0.55"/>
+              <hookPosition x="0" y="-0.5"/>
+              <rotationMax>30</rotationMax>
+              <rotationMin>-30</rotationMin>
+            </BodyConnector>
+            <BodyConnector jointName ="LeftShoulder" childName = "HumanLeftArm">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="0.45"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>90</rotationMax>
+              <rotationMin>-45</rotationMin>
+            </BodyConnector>
+            <BodyConnector jointName ="RightShoulder" childName = "HumanRightArm">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="0.45"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>90</rotationMax>
+              <rotationMin>-45</rotationMin>
+            </BodyConnector>
+            <BodyConnector jointName ="LeftHip" childName = "HumanLeftThigh">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.45"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>30</rotationMax>
+              <rotationMin>-10</rotationMin>
+            </BodyConnector>
+            <BodyConnector jointName ="RightHip" childName = "HumanRightThigh">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.45"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>30</rotationMax>
+              <rotationMin>-10</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+        <BodyPart limbName="HumanLeftArm">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>2</VisualLayer>
+          <Flippable>true</Flippable>
+          <BodyConnectors>
+            <BodyConnector jointName ="LeftElbow" childName = "HumanLeftForearm">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>90</rotationMax>
+              <rotationMin>-10</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+        <BodyPart limbName="HumanRightArm">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>-2</VisualLayer>
+          <Flippable>true</Flippable>
+          <BodyConnectors>
+            <BodyConnector jointName ="RightElbow" childName = "HumanRightForearm">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>90</rotationMax>
+              <rotationMin>-10</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+         <BodyPart limbName="HumanRightForearm">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="-3" y="1"/>
+          <VisualLayer>-2</VisualLayer>
+          <Flippable>true</Flippable>
+          <Controller ControllerType ="MouseTrack">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>1</I>
+             <D>0</D>
+             <Rotation>-90</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>
+
+           <BodyConnectors>
+            <BodyConnector jointName ="RightWrist" childName = "HumanRightHand">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0.4" y="-0.5"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>45</rotationMax>
+              <rotationMin>-45</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+         <BodyPart limbName="HumanLeftForearm">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>3</VisualLayer>
+          <Flippable>true</Flippable>
+           <Controller ControllerType ="MouseTrack">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>1</I>
+             <D>0</D>
+             <Rotation>-90</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>
+           <BodyConnectors>
+            <BodyConnector jointName ="LeftWrist" childName = "HumanLeftHand">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0.4" y="-0.5"/>
+              <hookPosition x="0" y="0.5"/>
+              <rotationMax>45</rotationMax>
+              <rotationMin>-45</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+         <BodyPart limbName="HumanRightHand">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>-4</VisualLayer>
+          <Flippable>true</Flippable>
+          <Controller ControllerType ="MouseTrack">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>1</I>
+             <D>0</D>
+             <Rotation>-90</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>
+         </BodyPart>
+         <BodyPart limbName="HumanLeftHand">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>4</VisualLayer>
+          <Flippable>true</Flippable>
+          <Controller ControllerType ="MouseTrack">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>1</I>
+             <D>0</D>
+             <Rotation>-90</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>
+         </BodyPart>
+        <BodyPart limbName="HumanLeftThigh">
+          <maxWidth>20</maxWidth>
+          <maxLength>30</maxLength>
+          <position x="-2" y="-2"/>
+          <VisualLayer>1</VisualLayer>
+          <Flippable>true</Flippable>
+          <Controller ControllerType ="Thigh">
+             <StrengthMod>10000</StrengthMod>
+             <SpeedMod>100</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>140</Wavelength>
+             <Offset>0</Offset>
+           </Controller>  
+          <BodyConnectors>
+            <BodyConnector jointName ="LeftKnee" childName = "HumanLeftCalve">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="0" y="0.4"/>
+              <rotationMax>0</rotationMax>
+              <rotationMin>-90</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+        <BodyPart limbName="HumanRightThigh">
+          <maxWidth>20</maxWidth>
+          <maxLength>30</maxLength>
+          <position x="-2" y="-2"/>
+          <VisualLayer>-1</VisualLayer>
+          <Flippable>true</Flippable>
+          <Controller ControllerType ="Thigh">
+             <StrengthMod>10000</StrengthMod>
+             <SpeedMod>100</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>140</Wavelength>
+             <Offset>140</Offset>
+           </Controller>  
+          <BodyConnectors>
+            <BodyConnector jointName ="RightKnee" childName = "HumanRightCalve">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="0" y="0.4"/>
+              <rotationMax>0</rotationMax>
+              <rotationMin>-90</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+               <BodyPart limbName="HumanRightCalve">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>-2</VisualLayer>
+          <Flippable>true</Flippable>
+            <Controller ControllerType ="Stable">
+             <StrengthMod>10000</StrengthMod>
+             <SpeedMod>100</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>140</Wavelength>
+             <Offset>0</Offset>
+           </Controller>  
+          <BodyConnectors>
+            <BodyConnector jointName ="RightAnkle" childName = "HumanRightFoot">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="-0.1" y="0.5"/>
+              <rotationMax>24</rotationMax>
+              <rotationMin>-24</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+         <BodyPart limbName="HumanLeftCalve">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>2</VisualLayer>
+          <Flippable>true</Flippable>
+            <Controller ControllerType ="Stable">
+             <StrengthMod>10000</StrengthMod>
+             <SpeedMod>100</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>140</Wavelength>
+             <Offset>140</Offset>
+           </Controller>  
+          <BodyConnectors>
+            <BodyConnector jointName ="LeftAnkle" childName = "HumanLeftFoot">
+              <pathSprite>Sprites/block</pathSprite>
+              <anchorPosition x="0" y="-0.5"/>
+              <hookPosition x="-0.1" y="0.5"/>
+              <rotationMax>24</rotationMax>
+              <rotationMin>-24</rotationMin>
+            </BodyConnector>
+          </BodyConnectors>
+        </BodyPart>
+         <BodyPart limbName="HumanRightFoot">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>-3</VisualLayer>
+          <Flippable>true</Flippable>
+           <Controller ControllerType ="Foot">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>140</Wavelength>
+             <Offset>140</Offset>
+           </Controller>  
+         </BodyPart>
+         <BodyPart limbName="HumanLeftFoot">
+          <maxWidth>30</maxWidth>
+          <maxLength>60</maxLength>
+          <position x="3" y="1"/>
+          <VisualLayer>3</VisualLayer>
+          <Flippable>true</Flippable>
+           <Controller ControllerType ="Foot">
+             <StrengthMod>1000</StrengthMod>
+             <SpeedMod>10</SpeedMod>
+             <P>1</P>
+             <I>0.1</I>
+             <D>0</D>
+             <Rotation>0</Rotation>
+             <Border>0</Border>
+             <SpeedLimit>50</SpeedLimit>
+             <Wavelength>100</Wavelength>
+             <Offset>0</Offset>
+           </Controller>  
+         </BodyPart>
+      </BodyParts>
+    </ChassisDefinition>
+  </ChassisDefinitions>
+</Definitions>

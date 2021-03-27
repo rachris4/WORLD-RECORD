@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SubTypeIdList />
+  <blueprintSubTypeIdList />
+  <BlockDefinitions />
+  <ChassisDefinitions />
+  <Blueprints>
+    <Blueprint TypeID="Limb">
+      <SubTypeID>LimbName</SubTypeID>
+      <Blocks>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="-1" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="-1" />
+          <rotation>90</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="0" />
+          <rotation>180</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="0" />
+          <rotation>270</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_triangle</SubTypeID>
+          <DisplayName>Corner Armor</DisplayName>
+          <pathSprite>Sprites/triangle</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="-2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_triangle</SubTypeID>
+          <DisplayName>Corner Armor</DisplayName>
+          <pathSprite>Sprites/triangle</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-2" y="-2" />
+          <rotation>270</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_triangle</SubTypeID>
+          <DisplayName>Corner Armor</DisplayName>
+          <pathSprite>Sprites/triangle</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-2" y="1" />
+          <rotation>180</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_triangle</SubTypeID>
+          <DisplayName>Corner Armor</DisplayName>
+          <pathSprite>Sprites/triangle</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="1" />
+          <rotation>90</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="0" />
+          <rotation>270</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="1" y="-1" />
+          <rotation>90</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="1" />
+          <rotation>180</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="-2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-2" y="-1" />
+          <rotation>270</rotation>
+          <transformScale x="-1" y="1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-2" y="0" />
+          <rotation>90</rotation>
+          <transformScale x="-1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="1" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="-1" z="1" />
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_slope_top</SubTypeID>
+          <DisplayName>2x1 Slope Top</DisplayName>
+          <pathSprite>Sprites/toptwoslope</pathSprite>
+          <isSolid>false</isSolid>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="-2" />
+          <rotation>0</rotation>
+          <transformScale x="-1" y="1" z="1" />
+        </Block>
+      </Blocks>
+    </Blueprint>
+  </Blueprints>
+</Definitions>

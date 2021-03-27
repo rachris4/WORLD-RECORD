@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - scrap
+  - ammo
+  - terrain1
+  - building
+  - terrain2
+  - defender
+  - attacker
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - far1
+  - far2
+  - mid1
+  - mid2
+  - near1
+  - near2
+  - 
+  - 
+  - 
+  - scrap
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProjectileDefinitions>
+    <ProjectileDefinition TypeID="Ammo">
+      <SubTypeID>basic_ammo</SubTypeID>
+      <DisplayName>basic ammo</DisplayName>
+      <pathSprite>Sprites/bullet</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="1" Threshold ="4" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="10" Fuse ="10"/>
+      <Velocity x="50" y="0" />
+      <Acceleration x="0" y="0" />
+      <Fuse>1000</Fuse>
+      <LinearDrag>0</LinearDrag>
+      <AngularDrag>0</AngularDrag>
+      <GravityScale>1</GravityScale>
+      <RotationSpeed>10</RotationSpeed>
+    </ProjectileDefinition>
+    <ProjectileDefinition TypeID="Ammo">
+      <SubTypeID>mouseguide</SubTypeID>
+      <DisplayName>spookyc ammo</DisplayName>
+      <pathSprite>Sprites/bullet</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="1" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="10" Fuse ="10"/>
+      <Velocity x="5" y="0" />
+      <Acceleration x="20" y="0" />
+      <Fuse>1000</Fuse>
+      <LinearDrag>0</LinearDrag>
+      <AngularDrag>0</AngularDrag>
+      <GravityScale>0</GravityScale>
+      <RotationSpeed>5</RotationSpeed>
+      <MouseGuidance>true</MouseGuidance>
+    </ProjectileDefinition>
+  </ProjectileDefinitions>
+</Definitions>
