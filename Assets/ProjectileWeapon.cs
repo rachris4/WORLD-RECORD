@@ -9,6 +9,8 @@ public class ProjectileWeapon : MonoBehaviour
 {
     private ProjectileDefinition projectile;
     private ProjectileWeaponDefinition weapon;
+    private Rigidbody2D rigid;
+
     [SerializeField]
     private int Tick = 0;
     [SerializeField]
@@ -40,6 +42,13 @@ public class ProjectileWeapon : MonoBehaviour
     [SerializeField]
     private Vector2 barrelVector = new Vector2(1f,0f); //for aesthetics and cheese
 
+    private ProjectileManager manager;
+
+    public void Start()
+    {
+        manager = Utilities.FindGameManager().GetComponent<ProjectileManager>();
+    }
+
     public void Initialize(ProjectileWeaponDefinition wepdef)
     {
         weapon = wepdef;
@@ -54,13 +63,16 @@ public class ProjectileWeapon : MonoBehaviour
         RangeMult = wepdef.RangeMult;
         barrelVector = wepdef.barrelVector.ToVector2();
         DefinitionManager.definitions.projectileDict.TryGetValue(projectileSubTypeID, out projectile);
+        rigid = Utilities.FindRigidbody(gameObject);
     }
 
     // Update is called once per physix
     private void FixedUpdate()
     {
+        if (manager == null || projectile == null)
+            return;
 
-        if(reInit)
+        if (reInit)
         {
             ProjectileWeaponDefinition def;
             if(DefinitionManager.definitions.projectileWeaponDict.TryGetValue(gameObject.name, out def))
@@ -83,7 +95,7 @@ public class ProjectileWeapon : MonoBehaviour
             {
                 keypressed = true;
                 ShotsQueued = burstCount;
-                Debug.Log("Shot Burst!");
+                //Debug.Log("Shot Burst!");
             }
         }
         else
@@ -92,31 +104,59 @@ public class ProjectileWeapon : MonoBehaviour
             {
                 keypressed = true;
                 ShotsQueued = 1;
-                Debug.Log("Shooting auto!!");
+                //Debug.Log("Shooting auto!!");
             }
         }
 
         if (ShotsQueued > 0)
         {
             Tick++;
-            Debug.Log("Tick!");
+            //Debug.Log("Tick!");
         }
 
         if (Tick > 0 && Tick > 1000/rateOfFire && ShotsQueued > 0)
         {
-            Shoot();
-            ShotsQueued--;
+
+            float shotsPerTick = Mathf.Round(1 / (1000f / rateOfFire));
+            Vector3 fwd = gameObject.transform.position + Utilities.RealRotation(gameObject) * weapon.barrelVector.ToVector3();
+            if(shotsPerTick > 1)
+            {
+                for(int j = 0; j < weapon.projectileCount; j++)
+                {
+                    for (int i = 0; i < shotsPerTick; i++)
+                    {
+                        fwd += Utilities.RealRotation(gameObject) * projectile.Velocity.ToVector3() * SpeedMult * Time.deltaTime * (i + 1) / shotsPerTick;
+                        Shoot(fwd);
+                    }
+                }
+                ShotsQueued = 0;
+
+            }
+            else
+            {
+                for (int j = 0; j < weapon.projectileCount; j++)
+                {
+                    Shoot(fwd);
+                }
+                ShotsQueued--;
+            }
+            if(rigid != null)
+            {
+                rigid.AddForce(Utilities.RealRotation(gameObject) * new Vector2(-1f, 0f) * weapon.KnockBackForce);
+            }
             Tick = 0;
-            Debug.Log((Tick % (1000 / rateOfFire)).ToString());
+            //Debug.Log((Tick % (1000 / rateOfFire)).ToString());
         }
 
     }
 
-    public void Shoot()
+    public void Shoot(Vector3 forward)
     {
+        manager.SpawnRaycasterProjectile(weapon,projectile,forward, Utilities.RealRotation(gameObject), 1, 1f);
+        /*
         var shot = new GameObject(projectile.SubTypeID);
-        var proj = shot.AddComponent<Projectile>();
-        proj.Initialize(projectile, weapon, gameObject);
+        var proj = shot.AddComponent<PhysicsProjectile>();
+        proj.Initialize(projectile, weapon, gameObject);*/
     }
 }
 
@@ -144,5 +184,7 @@ public class ProjectileWeaponDefinition : DefinitionBase
     public float RangeMult; //buckshot's worst nightmare
     [XmlElement("BarrelDisplacement")]
     public SerializableVector2 barrelVector; //for aesthetics and cheese
+    [XmlElement("KnockBackForce")]
+    public float KnockBackForce; //for aesthetics and cheese
 }
 

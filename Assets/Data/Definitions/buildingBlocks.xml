@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BlockDefinitions>
+    <BlockDefinition TypeID="Building">
+      <SubTypeID>building_glass_3x2</SubTypeID>
+      <DisplayName>Glass Pane 3x2</DisplayName>
+      <pathSprite>Sprites/glass</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <Mass>1</Mass>
+      <DestructionProperties Health="1" Threshold ="1" BreakPoints ="5" Hardness ="30" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="0" y="-0.5"/>
+    </BlockDefinition>
+    <BlockDefinition TypeID="Building">
+      <SubTypeID>building_wall_1x3</SubTypeID>
+      <DisplayName>Wall 1x3</DisplayName>
+      <pathSprite>Sprites/wall</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <Mass>50</Mass>
+      <DestructionProperties Health="50" Threshold ="5" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="0" y="-0.5"/>
+    </BlockDefinition>
+    <BlockDefinition TypeID="Building">
+      <SubTypeID>building_floor_11x2</SubTypeID>
+      <DisplayName>Floor 11x2</DisplayName>
+      <pathSprite>Sprites/floor</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="300" Threshold ="5" BreakPoints ="5" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="0" y="-0.5"/>
+      <Mass>300</Mass>
+    </BlockDefinition>
+  </BlockDefinitions>
+</Definitions>

@@ -251,6 +251,9 @@ public class LimbController : MonoBehaviour
             direction = 0;
         }
 
+        rigidBody.sharedMaterial.friction = 10f;
+        rigidBody.sharedMaterial.bounciness = -3000f;
+
         if ((direction > 0 && Input.GetKey("a")) || (direction < 0 && Input.GetKey("d")))
         {
             rigidBody.sharedMaterial.friction = 1000f;
@@ -268,7 +271,6 @@ public class LimbController : MonoBehaviour
         float pos = gameObject.transform.position.x;
         float despos = Time.deltaTime * speedMod * 5;
         despos *= direction;
-
         rigidBody.AddForce(new Vector2(direction * strengthMod/10 * pid.Update(pos+despos, pos, Time.deltaTime, speedLimit), 0f));
     }
 

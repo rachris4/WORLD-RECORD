@@ -3,13 +3,14 @@
   <BlockDefinitions />
   <SubTypeIdList />
   <ChassisDefinitions />
-  <blueprintSubTypeIdList />
   <ProjectileDefinitions />
   <projectileSubTypeList />
   <ProjectileWeaponDefinitions />
   <projectileWeaponSubTypeList />
+  <EnergyWeaponDefinitions />
+  <energyWeaponSubtypeIDList />
   <Blueprints>
-    <Blueprint TypeID="Limb">
+    <Blueprint TypeID="Robot">
       <SubTypeID>HumanTorso</SubTypeID>
       <Blocks>
         <Block TypeID="Armor">
@@ -17,686 +18,1005 @@
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="0" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_bot</SubTypeID>
           <DisplayName>2x1 Slope Bottom</DisplayName>
           <pathSprite>Sprites/bottwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
-          <entityID>0</entityID>
-          <blockLocation x="-1" y="4" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>armor_square</SubTypeID>
-          <DisplayName>Square Armor</DisplayName>
-          <pathSprite>Sprites/block</pathSprite>
-          <isSolid>false</isSolid>
-          <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_triangle</SubTypeID>
           <DisplayName>Corner Armor</DisplayName>
           <pathSprite>Sprites/triangle</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-3" y="4" />
           <rotation>90</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-3" y="3" />
           <rotation>90</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-3" y="2" />
           <rotation>90</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-3" y="1" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_bot</SubTypeID>
           <DisplayName>2x1 Slope Bottom</DisplayName>
           <pathSprite>Sprites/bottwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-3" y="0" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="-1" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="-2" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="-3" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="-4" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_bot</SubTypeID>
           <DisplayName>2x1 Slope Bottom</DisplayName>
           <pathSprite>Sprites/bottwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="-5" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-5" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>armor_square</SubTypeID>
-          <DisplayName>Square Armor</DisplayName>
-          <pathSprite>Sprites/block</pathSprite>
-          <isSolid>false</isSolid>
-          <weapon />
-          <entityID>0</entityID>
-          <blockLocation x="0" y="-5" />
-          <rotation>270</rotation>
-          <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_triangle</SubTypeID>
           <DisplayName>Corner Armor</DisplayName>
           <pathSprite>Sprites/triangle</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-6" />
           <rotation>270</rotation>
           <transformScale x="1" y="-1" z="1" />
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>armor_square</SubTypeID>
-          <DisplayName>Square Armor</DisplayName>
-          <pathSprite>Sprites/block</pathSprite>
-          <isSolid>false</isSolid>
-          <weapon />
-          <entityID>0</entityID>
-          <blockLocation x="0" y="-6" />
-          <rotation>270</rotation>
-          <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_triangle</SubTypeID>
           <DisplayName>Corner Armor</DisplayName>
           <pathSprite>Sprites/triangle</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-6" />
           <rotation>0</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-5" />
           <rotation>0</rotation>
           <transformScale x="1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_bot</SubTypeID>
           <DisplayName>2x1 Slope Bottom</DisplayName>
           <pathSprite>Sprites/bottwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="-5" />
           <rotation>270</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_triangle</SubTypeID>
           <DisplayName>Corner Armor</DisplayName>
           <pathSprite>Sprites/triangle</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="-4" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="-2" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="-3" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="2" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="1" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="0" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
           <DisplayName>2x1 Slope Top</DisplayName>
           <pathSprite>Sprites/toptwoslope</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="2" y="-1" />
           <rotation>90</rotation>
           <transformScale x="-1" y="-1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="2" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-2" y="0" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-2" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="-4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="-4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-4" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-2" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
-          <entityID>0</entityID>
-          <blockLocation x="-1" y="2" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>armor_square</SubTypeID>
-          <DisplayName>Square Armor</DisplayName>
-          <pathSprite>Sprites/block</pathSprite>
-          <isSolid>false</isSolid>
-          <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="0" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="-1" y="-3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="-3" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="-2" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="-1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="0" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="0" y="1" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
         <Block TypeID="Armor">
           <SubTypeID>armor_square</SubTypeID>
           <DisplayName>Square Armor</DisplayName>
           <pathSprite>Sprites/block</pathSprite>
           <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
           <weapon />
-          <entityID>0</entityID>
-          <blockLocation x="0" y="2" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>armor_square</SubTypeID>
-          <DisplayName>Square Armor</DisplayName>
-          <pathSprite>Sprites/block</pathSprite>
-          <isSolid>false</isSolid>
-          <weapon />
+          <Mass>0</Mass>
           <entityID>0</entityID>
           <blockLocation x="1" y="2" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="-6" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="JointStator">
+          <SubTypeID>simple_socket</SubTypeID>
+          <DisplayName>socket</DisplayName>
+          <pathSprite>Sprites/jointsocket</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="-5" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="JointStator">
+          <SubTypeID>simple_socket</SubTypeID>
+          <DisplayName>socket</DisplayName>
+          <pathSprite>Sprites/jointsocket</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="JointStator">
+          <SubTypeID>simple_socket</SubTypeID>
+          <DisplayName>socket</DisplayName>
+          <pathSprite>Sprites/jointsocket</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="-1" y="2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
         </Block>
       </Blocks>
       <VisualLayer>0</VisualLayer>
       <Flippable>true</Flippable>
+      <Max>
+        <x>0</x>
+        <y>0</y>
+      </Max>
+      <Min>
+        <x>0</x>
+        <y>0</y>
+      </Min>
     </Blueprint>
   </Blueprints>
+  <blueprintSubTypeIdList />
 </Definitions>

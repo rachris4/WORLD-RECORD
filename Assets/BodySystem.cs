@@ -21,10 +21,13 @@ public class Chassis
 
     public Vector2 rotation;
 
-    public Chassis(ChassisDefinition init, string addstring = "")
+    private GameObject entparent;
+
+    public Chassis(ChassisDefinition init, string addstring = "", GameObject obj = null)
     {
         def = init;
         def.SubTypeID += addstring;
+        entparent = obj;
         Initialize();
     }
     void Initialize()
@@ -33,148 +36,30 @@ public class Chassis
 
         foreach (var item in def.bodyParts)
         {
-            GameObject limb = new GameObject(def.SubTypeID + "_" + item.limbName);
-            var info = limb.AddComponent<BodyPartUnity>();
-            GameObject limbSprite = new GameObject("sprite_"+limb.name);
-            limbSprite.transform.parent = limb.transform;
-            Vector3 pos = new Vector3(item.position.x, item.position.y, 0);//item.VisualLayer);
-            //Debug.Log(item.limbName);
-            limb.transform.position = pos;
-            var bodyGrid = limb.AddComponent<Grid>();
-            var rigidbody = limb.AddComponent<Rigidbody2D>();
-            var limbdef = BodyPart.Load(item.limbName);
-            rigidbody.useAutoMass = true;
-            var currentRend = limbSprite.AddComponent<SpriteRenderer>();
-            currentRend.sprite = Resources.Load<Sprite>("Sprites/BoundingBox");
-            currentRend.sortingOrder = -item.VisualLayer;
 
-            if (limb.name.Contains("Left"))
+            BodyPart limbdef;
+            DefinitionManager.definitions.blueprintDict.TryGetValue(item.limbName, out limbdef);
+            if (limbdef == null)
             {
-                currentRend.color = new Color(1f, 0f, 0f, 1f);
-                limb.layer = 22;
-            }
-            else if (limb.name.Contains("Right"))
-            {
-                currentRend.color = new Color(0f, 0f, 1f, 1f);
-                limb.layer = 26;
-            }
-            else
-            {
-                limb.layer = 24;
+                continue;
             }
 
-            Vector2Int min = Vector2Int.zero;
-            Vector2Int max = Vector2Int.zero;
-            int blockCount = 0;
-
-            foreach (BodyPart bp in limbdef.blueprints)
-            {
-                blockCount = bp.blockList.Count;
-                foreach (Block square in bp.blockList)
-                {
-                    GameObject newBlock = new GameObject(square.SubTypeID);
-                    newBlock.transform.position = square.blockLocation.ToVector3();
-
-                    BlockDefinition otherSquare;
-                    DefinitionManager.definitions.blockDict.TryGetValue(square.SubTypeID, out otherSquare);
-                    if (otherSquare == null)
-                        otherSquare = square as BlockDefinition;
-                    square.Weapon = otherSquare.Weapon;
-                    square.InitializeByTypeID(newBlock);
-
-                    if(newBlock.transform.position.x < min.x)
-                    {
-                        min.x = (int)newBlock.transform.position.x;
-                    }
-                    if (newBlock.transform.position.y < min.y)
-                    {
-                        min.y = (int)newBlock.transform.position.y;
-                    }
-                    if (newBlock.transform.position.x > max.x)
-                    {
-                        max.x = (int)newBlock.transform.position.x;
-                    }
-                    if (newBlock.transform.position.y > max.y)
-                    {
-                        max.y = (int)newBlock.transform.position.y;
-                    }
-
-
-                    newBlock.transform.parent = limb.transform;
-                    newBlock.transform.localScale = square.transformScale.ToVector3();
-                    newBlock.layer = limb.layer;
-                    newBlock.transform.rotation = Quaternion.Euler(0f, 0f, square.rotation);
-                    SpriteRenderer newRend = newBlock.AddComponent<SpriteRenderer>();
-
-                    
-
-
-                    newRend.sprite = Resources.Load<Sprite>(otherSquare.pathSprite);
-                    newRend.sortingOrder = currentRend.sortingOrder;
-                    newRend.color = currentRend.color;
-                    if (otherSquare.destructionProperties != null)
-                    {
-                        var healthobject = newBlock.AddComponent<Destroyable>();
-                        //Debug.Log(otherSquare.destructionProperties.Threshold.ToString());
-                        healthobject.Initialize(otherSquare.destructionProperties);
-                    }
-                    PolygonCollider2D shape;
-                    switch (otherSquare.collider)
-                    {
-                        case "box":
-                            newBlock.AddComponent<BoxCollider2D>();
-                            break;
-                        case "triangle":
-                            shape = newBlock.AddComponent<PolygonCollider2D>();
-                            shape.pathCount = 1;
-                            shape.points = new Vector2[] { new Vector2(-0.5f, 0.5f), new Vector2(-0.5f, -0.5f), new Vector2(0.5f, -0.5f) };
-                            break;
-                        case "toptwoslope":
-                            shape = newBlock.AddComponent<PolygonCollider2D>();
-                            shape.pathCount = 1;
-                            shape.points = new Vector2[] { new Vector2(-0.5f, 0.5f), new Vector2(-0.5f, -0.5f), new Vector2(0.5f, -0.5f), new Vector2(0.5f, 0f) };
-                            break;
-                        case "bottwoslope":
-                            shape = newBlock.AddComponent<PolygonCollider2D>();
-                            shape.pathCount = 1;
-                            shape.points = new Vector2[] { new Vector2(-0.5f, 0f), new Vector2(-0.5f, -0.5f), new Vector2(0.5f, -0.5f) };
-                            break;
-                        default:
-                            newBlock.AddComponent<BoxCollider2D>();
-                            break;
-                    }
-                }
-            }
-
-
-
-            //Vector3 scale = limb.transform.localScale / 10;
-            //scale.x *= item.maxWidth;
-            //scale.y *= item.maxLength;
-            //bodyGrid.
-            info.Max = max;
-            info.Min = min;
-
-            limbSprite.transform.localScale = new Vector3(max.x - min.x+1, max.y - min.y+1, 1f);
-            currentRend.color = new Color(0f, 1f, 0f, 1f);
-            Vector2 span = max - min;
-            span = max - span / 2;
-            limbSprite.transform.position = new Vector3(span.x, span.y, 0);
-            //limb.transform.localScale = scale; IMPORTANT FIX LATER
-            //limb.AddComponent<BoxCollider2D>();
-            rigidbody.Sleep();
-            if(item.Controller != null)
-            {
-                var limbController = limb.AddComponent<LimbController>();
-                limbController.Initialize(item.Controller);
-            }
+            GameObject limb = limbdef.CreateLimbUnity(limbdef, def, item, entparent);
             limbObjects.Add(limb);
             
         }
+
         foreach (var item in def.bodyParts)
         {
             GameObject temp = GameObject.Find(def.SubTypeID + "_" + item.limbName);
-            var info = temp.GetComponent<BodyPartUnity>();
+
+            BodyPart limbdef;
+            DefinitionManager.definitions.blueprintDict.TryGetValue(item.limbName, out limbdef);
+            if (limbdef == null)
+            {
+                continue;
+            }
+
             if (temp == null)
             {
                 Debug.Log("Tired of this shit!");
@@ -189,15 +74,23 @@ public class Chassis
                 var hinge = temp.AddComponent<HingeJoint2D>();
                 hinge.autoConfigureConnectedAnchor = false;
                 var temptemp = GameObject.Find(def.SubTypeID + "_" + joint.childName);
-                var attachedLimb = temptemp.GetComponent<BodyPartUnity>();
+
+                BodyPart attachedLimb;
+                DefinitionManager.definitions.blueprintDict.TryGetValue(joint.childName, out attachedLimb);
+                if (attachedLimb == null)
+                {
+                    continue;
+                }
+
+
                 hinge.connectedBody = temptemp.GetComponent<Rigidbody2D>();
                 //Debug.Log(joint.jointName + " Joint Def Anchor Pos : " +joint.pathsprite);
                 Vector2 tempvector = new Vector2(0f, 0f);
-                Vector2 span = info.Max - info.Min;
+                Vector2 span = limbdef.Max - limbdef.Min;
                 Vector2 attachedSpan = attachedLimb.Max - attachedLimb.Min;
                 tempvector.x = joint.anchorPosition.x*span.x;
                 tempvector.y = joint.anchorPosition.y*span.y;
-                span = info.Max - span / 2;
+                span = limbdef.Max - span / 2;
                 hinge.anchor = tempvector + span;
                 tempvector.x = joint.hookPosition.x*attachedSpan.x;
                 tempvector.y = joint.hookPosition.y * attachedSpan.y;
@@ -233,29 +126,6 @@ public class Chassis
 
 }
 
-public class BodyPartUnity : MonoBehaviour
-{
-    [SerializeField]
-    public Dictionary<Vector2Int, Block> blockDictionary = new Dictionary<Vector2Int, Block>();
-    [SerializeField]
-    public Vector2Int Max;
-    [SerializeField]
-    public Vector2Int Min;
-
-
-    public void UpdateBlocks()
-    {
-
-    }
-
-    void Update()
-    {
-        if (gameObject.transform.childCount <= 1)
-            Destroy(gameObject);
-    }
-}
-
-
 public class ChassisDefinition : DefinitionBase
 {
 
@@ -284,13 +154,304 @@ public class BodyPart : DefinitionBase
     [XmlArrayItem("BodyConnector", typeof(BodyConnector))]
     public BodyConnector[] Joints;
 
+    public Vector2Int Max;
+    public Vector2Int Min;
+
+    private HashSet<MeshTriangle> alienTris = new HashSet<MeshTriangle>();
+
+    public GameObject CreateLimbUnity(BodyPart limbdef, ChassisDefinition def = null, ChassisLimbDefinition item = null,  GameObject entparent = null)
+    {
+
+        string name = "";
+        if(def != null)
+        {
+            name = def.SubTypeID + "_";
+        }
+
+        GameObject limb = new GameObject(name + limbdef.SubTypeID);
+        
+        if (entparent != null)
+            limb.transform.parent = entparent.transform;
+        GameObject limbSprite = new GameObject("sprite_" + limb.name);
+        limbSprite.transform.parent = limb.transform;
+
+        var bodyGrid = limb.AddComponent<Grid>();
+        var rigidbody = limb.AddComponent<Rigidbody2D>();
+
+        
+
+
+        rigidbody.useAutoMass = true;
+        var currentRend = limbSprite.AddComponent<SpriteRenderer>();
+        currentRend.sprite = Resources.Load<Sprite>("Sprites/BoundingBox");
+
+        if (limb.name.Contains("Left"))
+        {
+            currentRend.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            limb.layer = 22;
+        }
+        else if (limb.name.Contains("Right"))
+        {
+            currentRend.color = new Color(1f, 1f, 1f, 1f);
+            limb.layer = 26;
+        }
+        else
+        {
+            currentRend.color = new Color(1f, 1f, 1f, 1f);
+            limb.layer = 24;
+        }
+
+        if (item != null)
+        {
+            Vector3 pos = new Vector3(item.position.x, item.position.y, 0);//item.VisualLayer);
+            currentRend.sortingOrder = -item.VisualLayer;
+            limb.transform.position = pos;
+            if (item.Controller != null)
+            {
+                var limbController = limb.AddComponent<LimbController>();
+                limbController.Initialize(item.Controller);
+            }
+        }
+
+        Vector2Int min = Vector2Int.zero;
+        Vector2Int max = Vector2Int.zero;
+        int blockCount = 0;
+
+        blockCount = limbdef.blockList.Count;
+
+        List<GameObject> AlienBlocks = new List<GameObject>();
+        List<Block> AlienSquares = new List<Block>();
+        Dictionary<Vector3, GameObject> HexDict = new Dictionary<Vector3, GameObject>();
+
+        int kk = 0;
+
+        foreach (Block square in limbdef.blockList)
+        {
+            GameObject newBlock = square.CreateBlockUnity(limb, currentRend);
+
+            BlockDefinition bloq;
+            DefinitionManager.definitions.blockDict.TryGetValue(square.SubTypeID, out bloq);
+
+            if (bloq == null)
+                continue;
+
+            if (bloq.AlienProperties != null)
+            {
+                kk++;
+
+                square.AlienProperties = bloq.AlienProperties;
+
+                square.refIndex = kk;
+                AlienBlocks.Add(newBlock);
+                AlienSquares.Add(square);
+                var rig = newBlock.AddComponent<Rigidbody2D>();
+                rig.useAutoMass = false;
+                rig.mass = square.AlienProperties.Mass;
+                var mat = new PhysicsMaterial2D();
+                mat.friction = square.AlienProperties.MaterialFriction;
+                mat.bounciness = square.AlienProperties.MaterialBounciness;
+                rig.sharedMaterial = mat;
+                HexDict.Add(square.HexVector.ToVector3(), newBlock);
+            }
+
+            if (newBlock.transform.position.x < min.x)
+            {
+                min.x = (int)newBlock.transform.position.x;
+            }
+            if (newBlock.transform.position.y < min.y)
+            {
+                min.y = (int)newBlock.transform.position.y;
+            }
+            if (newBlock.transform.position.x > max.x)
+            {
+                max.x = (int)newBlock.transform.position.x;
+            }
+            if (newBlock.transform.position.y > max.y)
+            {
+                max.y = (int)newBlock.transform.position.y;
+            }
+        }
+
+        int fixes = 0;
+
+        for(int i = 0; i < AlienSquares.Count; i++)
+        {
+            GameObject newBlock = AlienBlocks[i];
+            Block square = AlienSquares[i];
+            Rigidbody2D newRigid = newBlock.GetComponent<Rigidbody2D>();
+            if(square.AlienProperties.TypeID == "Bone" && fixes < 2)
+            {
+                var fix = limb.AddComponent<FixedJoint2D>();
+                fix.connectedBody = newRigid;
+                fixes++;
+            }
+            int springCount = 0;
+
+            foreach(Vector3 hexPt in Utilities.HexNeighbours(square.HexVector.ToVector3()))
+            {
+
+                GameObject neighbourBlock;
+
+                //Debug.Log("eeee!!");
+
+                HexDict.TryGetValue(hexPt, out neighbourBlock);
+                if (neighbourBlock == null)
+                {
+                    //Debug.Log("The hexagonal coordinate " + hexPt.ToString() + " did not exist in the dictionary.");
+                    continue;
+
+                }
+
+                Block doubledef = AlienSquares[AlienBlocks.IndexOf(neighbourBlock)];
+
+                MeshTriangle tri = new MeshTriangle();
+                tri.Triangles = new GameObject[3];
+
+                foreach (Vector3 doubleHex in Utilities.HexNeighbours(hexPt))
+                {
+                    GameObject doubleNeighbor;
+                    HexDict.TryGetValue(doubleHex, out doubleNeighbor);
+                    if (doubleNeighbor == null || doubleNeighbor == newBlock)
+                    {
+                        continue;
+                    }
+                    Debug.ClearDeveloperConsole();
+                    bool ogneighbor = false;
+
+                    foreach (Vector3 tripleHex in Utilities.HexNeighbours(doubleHex))
+                    {
+                        if(tripleHex == square.HexVector.ToVector3())
+                        {
+                            ogneighbor = true;
+                            break;
+                        }
+                    }
+
+                    if (!ogneighbor)
+                        continue;
+                    /*
+                    Block tripledef = AlienSquares[AlienBlocks.IndexOf(doubleNeighbor)];
+                    Block[] set = new Block[3];
+                    set[0] = square;
+                    set[1] = doubledef;
+                    set[2] = tripledef;
+
+                    if (set[0].refIndex > set[1].refIndex) //ew
+                    {
+                        set[0] = doubledef;
+                        set[1] = square;
+                    }
+                    if(set[1].refIndex > set[2].refIndex)
+                    {
+                        var temp = set[1];
+                        set[1] = set[2];
+                        set[2] = temp;
+                    }
+                    if (set[0].refIndex > set[1].refIndex)
+                    {
+                        var temp = set[0];
+                        set[0] = set[1];
+                        set[1] = temp;
+                    }
+
+                    for(int l = 0; l < 3; l++)
+                    {
+                        var sq = set[l];
+
+                        if(sq == square)
+                            tri.Triangles[l] = newBlock;
+                        else if (sq == doubledef)
+                            tri.Triangles[l] = neighbourBlock;
+                        else if(sq == tripledef)
+                            tri.Triangles[l] = doubleNeighbor;
+                    }
+
+                    */
+
+                    tri.Triangles[0] = newBlock;
+                    tri.Triangles[1] = neighbourBlock;
+                    tri.Triangles[2] = doubleNeighbor;
+
+
+                    if (alienTris.Contains(tri))
+                        continue;
+                    else
+                        alienTris.Add(tri);
+                }
+
+                bool makeSpring = true;
+
+                //Debug.Log("oooo!!");
+
+                
+                Rigidbody2D otherRigid = neighbourBlock.GetComponent<Rigidbody2D>();
+                foreach(var spring in neighbourBlock.GetComponents<SpringJoint2D>())
+                {
+                    if (spring.connectedBody == newRigid)
+                    {
+                        makeSpring = false;
+                        //Debug.Log("the pairing " + newBlock.name + " / " + neighbourBlock.name + " failed because of the existing pair: " + neighbourBlock.name + " / " + spring.connectedBody.gameObject.name);
+                        break;
+                    }
+                }
+                
+                if (!makeSpring)
+                    continue;
+                //Debug.Log("AlienNeuighbours!!");
+                if(square.AlienProperties.TypeID == "Bone" && "Bone" == doubledef.AlienProperties.TypeID)
+                {
+                    var fix = newBlock.AddComponent<FixedJoint2D>();
+                    fix.connectedBody = otherRigid;
+                    fix.breakForce = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
+                    continue;
+                }
+                var newspring = newBlock.AddComponent<SpringJoint2D>();
+                newspring.autoConfigureDistance = false;
+                newspring.connectedBody = otherRigid;
+                newspring.distance = 2.1f;
+                newspring.dampingRatio = (square.AlienProperties.SpringDamping+ doubledef.AlienProperties.SpringDamping)/2f;
+                newspring.frequency = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant)/2f;
+                newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
+
+                springCount++;
+
+            }
+
+        }
+
+        if (AlienSquares.Count > 0 && alienTris.Count > 0)
+        {
+            var mesh = new GameObject(limb.name + "_fleshmesh");
+            //mesh.transform.parent = limb.transform;
+            var flesh = mesh.AddComponent<FleshMesh>();
+            //Object.Destroy(limb.GetComponent<SpriteRenderer>());
+            var filter = mesh.AddComponent<MeshFilter>();
+            var render = mesh.AddComponent<MeshRenderer>();
+            flesh.alienTris = alienTris;
+        }
+
+        limbdef.Max = max;
+        limbdef.Min = min;
+
+        limbSprite.transform.localScale = new Vector3(max.x - min.x + 1, max.y - min.y + 1, 1f);
+        currentRend.color = new Color(0f, 1f, 0f, 0f);
+        Vector2 span = max - min;
+        span = max - span / 2;
+        limbSprite.transform.position = new Vector3(span.x, span.y, 0);
+        rigidbody.Sleep();
+
+        
+
+        return limb;
+    }
+
     public void Save(string path)
     {
         path += ".xml";
         var def = new DefinitionSet();
         def.blueprints.Add(this);
         var serializer = new XmlSerializer(typeof(DefinitionSet));
-        using (var stream = new FileStream(Path.Combine(blueprintPath,path), FileMode.Create))
+        using (var stream = new FileStream(Path.Combine(blueprintPath, path), FileMode.Create))
         {
             serializer.Serialize(stream, def);
         }
@@ -306,6 +467,11 @@ public class BodyPart : DefinitionBase
         }
     }
 
+}
+
+public struct MeshTriangle
+{
+    public GameObject[] Triangles;
 }
 
 public class BodyConnector
@@ -363,7 +529,7 @@ public class LimbControllerDefinition
     public float Offset;
 }
 
-public struct ChassisLimbDefinition
+public class ChassisLimbDefinition
 {
     [XmlAttribute("limbName")]
     public string limbName;
@@ -383,20 +549,3 @@ public struct ChassisLimbDefinition
     public LimbControllerDefinition Controller;// = true;
 }
 
-public class DestroyableDefinition
-{
-    [XmlAttribute("Health")]
-    public float Health;
-    [XmlAttribute("Threshold")]
-    public float Threshold;
-    [XmlAttribute("BreakPoints")]
-    public int BreakPoints;
-    [XmlAttribute("Hardness")]
-    public float Hardness;
-    [XmlAttribute("ShatterType")]
-    public string shatterType;
-    [XmlAttribute("FadeOut")]
-    public float fadeOut;
-    [XmlAttribute("Fuse")]
-    public float Fuse;
-}

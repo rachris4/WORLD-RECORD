@@ -9,5 +9,28 @@
       <collider>box</collider>
       <weapon>basic_gun</weapon>
     </BlockDefinition>
+    <BlockDefinition TypeID="FixedWeaponBlock">
+      <SubTypeID>basic_laser</SubTypeID>
+      <DisplayName>Simple Laser</DisplayName>
+      <pathSprite>Sprites/laser</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <weapon>basic_laser</weapon>
+    </BlockDefinition>
+    <BlockDefinition TypeID="TurretBlock">
+      <SubTypeID>basic_turret</SubTypeID>
+      <DisplayName>Simple Turret</DisplayName>
+      <pathSprite>Sprites/turretblock</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <weapon>basic_gun</weapon>
+      <TurretProperties>
+        <TurretPathSprite>Sprites/turretbarrel</TurretPathSprite>
+        <AI>true</AI>
+        <AIRange>100</AIRange>
+        <RotationSpeed>10</RotationSpeed>
+        <TurretOffset x="0" y="0" />
+      </TurretProperties>
+    </BlockDefinition>
   </BlockDefinitions>
 </Definitions>

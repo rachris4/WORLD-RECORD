@@ -5,15 +5,31 @@
       <SubTypeID>basic_gun</SubTypeID>
       <DisplayName>Simple Gun</DisplayName>
       <Projectile>mouseguide</Projectile>
-      <RateOfFire>400</RateOfFire>
+      <RateOfFire>1000</RateOfFire>
       <Reload>0</Reload>
-      <ShotsInBurst>5</ShotsInBurst>
+      <ShotsInBurst>25</ShotsInBurst>
       <ProjectileCount>1</ProjectileCount>
-      <Deviation>0</Deviation>
+      <Deviation>10</Deviation>
       <DamageMult>1</DamageMult>
       <RangeMult>1</RangeMult>
       <SpeedMult>1</SpeedMult>
-      <BarrelDisplacement x="2" y="0" />
+      <BarrelDisplacement x="0" y="0" />
+      <KnockBackForce>300</KnockBackForce>
     </ProjectileWeaponDefinition>
   </ProjectileWeaponDefinitions>
+  <EnergyWeaponDefinitions>
+    <EnergyWeaponDefinition TypeID = "Zoot">
+      <SubTypeID>basic_laser</SubTypeID>
+      <DisplayName>Simple Laser</DisplayName>
+      <RateOfFire>0</RateOfFire>
+      <ChargeTime>100</ChargeTime>
+      <BeamTime>200</BeamTime>
+      <DeviationCone>1</DeviationCone>
+      <Damage>10</Damage>
+      <Range>300</Range>
+      <BarrelDisplacement x="0.5" y="0" />
+      <KnockBackForce>0</KnockBackForce>
+      <LineWidth>0.2</LineWidth>
+    </EnergyWeaponDefinition>
+  </EnergyWeaponDefinitions>
 </Definitions>

@@ -13,6 +13,91 @@ public static class Utilities
         return ray.GetPoint(distance);
     }
 
+    public static Rigidbody2D FindRigidbody(GameObject obj)
+    {
+        var rigid = obj.GetComponent<Rigidbody2D>();
+        if (rigid != null)
+            return rigid;
+        for(int i = 0; i < 5; i++)
+        {
+            if (obj.transform.parent == null)
+            {
+                return null;
+            }
+            obj = obj.transform.parent.gameObject;
+            rigid = obj.GetComponent<Rigidbody2D>();
+            if (rigid != null)
+                return rigid;
+        }
+        return null;
+    }
+
+    public static Quaternion RealRotation(GameObject obj)
+    {
+
+        Vector3 eulerAngs = obj.transform.rotation.eulerAngles;
+        float rotz = eulerAngs.z;
+        Vector3 scaler = obj.transform.localScale;
+
+        if(scaler.x < 0)
+        {
+            rotz += 180f;
+        }
+
+        return Quaternion.Euler(eulerAngs.x, eulerAngs.y, rotz);
+    }
+
+    public static GameObject FindGameManager()
+    {
+        return GameObject.Find("GameManager");
+    }
+
+    
+
+    public static Vector3 RoundToHexCoordinates(Vector3 convertPosition, float gridSpacing)
+    {
+        float yspacing = gridSpacing * Mathf.Sqrt(3f);
+        float newx1 = Mathf.Round(convertPosition.x / gridSpacing) * gridSpacing;
+        float newy1 = Mathf.Round(convertPosition.y / yspacing) * yspacing;
+
+        float newx2 = Mathf.Round(convertPosition.x / gridSpacing) * gridSpacing + gridSpacing / 2;
+        float newy2 = Mathf.Round(convertPosition.y / yspacing) * yspacing + yspacing / 2;
+
+        Vector3 result1 = new Vector3(newx1, newy1, 0f);
+        Vector3 result2 = new Vector3(newx2, newy2, 0f);
+        if (Vector3.Distance(result1, convertPosition) < Vector3.Distance(result2, convertPosition))
+        {
+            return result1;
+        }
+        return result2;
+    }
+
+    public static Vector3 ConvertToHexagonalCoordinates(Vector3 cartCoord, float gridSpacing)
+    {
+        cartCoord.y *= -1f;
+
+        var q = Mathf.Round((Mathf.Sqrt(3) / 3.5f * cartCoord.x - cartCoord.y/3.5f) / gridSpacing);
+        var r = Mathf.Round((2/ 3.5f * cartCoord.y) / gridSpacing);
+        var x = q;
+        var z = r;
+        var y = -x - z;
+        return new Vector3(x, y, z);
+    }
+
+    public static Vector3[] HexNeighbours(Vector3 hex)
+    {
+        Vector3[] neighbours = new Vector3[6];
+
+        neighbours[0] = new Vector3(hex.x + 1, hex.y - 1, hex.z + 0);
+        neighbours[1] = new Vector3(hex.x + 1, hex.y + 0, hex.z - 1);
+        neighbours[2] = new Vector3(hex.x + 0, hex.y + 1, hex.z - 1);
+        neighbours[3] = new Vector3(hex.x - 1, hex.y + 1, hex.z + 0);
+        neighbours[4] = new Vector3(hex.x - 1, hex.y + 0, hex.z + 1);
+        neighbours[5] = new Vector3(hex.x + 0, hex.y - 1, hex.z + 1);
+
+        return neighbours;
+    }
+
     public static void PIDAngleAdjust(ref float angle, ref float desiredAngle)
     {
 
@@ -36,7 +121,14 @@ public static class Utilities
         }
     }   
 
-   
+   public static void CopyTransform(Transform OG, ref GameObject NEWG)
+    {
+        if(OG.parent != null)
+            NEWG.transform.parent = OG.parent;
+        NEWG.transform.position = OG.position;
+        NEWG.transform.localScale = OG.localScale;
+        NEWG.transform.rotation = OG.rotation;
+    }
 
 }
 

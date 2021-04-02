@@ -33,5 +33,23 @@
       <collider>bottwoslope</collider>
       <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+    <BlockDefinition TypeID="JointStator">
+      <SubTypeID>simple_socket</SubTypeID>
+      <DisplayName>socket</DisplayName>
+      <pathSprite>Sprites/jointsocket</pathSprite>
+      <flippedPathSprite>Sprites/jointball</flippedPathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
+    <BlockDefinition TypeID="JointRotor">
+      <SubTypeID>simple_ball</SubTypeID>
+      <DisplayName>socket</DisplayName>
+      <pathSprite>Sprites/jointball</pathSprite>
+      <flippedPathSprite>Sprites/jointsocket</flippedPathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
   </BlockDefinitions>
 </Definitions>

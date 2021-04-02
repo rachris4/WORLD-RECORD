@@ -29,7 +29,8 @@ public class BuildSystem : MonoBehaviour
 
     [SerializeField]
     private string blueprintName;
-
+    [SerializeField]
+    private string TypeID;
     //layer mask to control raycasting
     [SerializeField]
     private LayerMask solidNoBuildLayer;
@@ -37,6 +38,8 @@ public class BuildSystem : MonoBehaviour
     private LayerMask fakeNoBuildLayer;
     [SerializeField]
     private LayerMask allBlocksLayer;
+
+    private bool IsAlien = false;
 
     private void Awake()
     {
@@ -51,7 +54,8 @@ public class BuildSystem : MonoBehaviour
         //Debug.Log("I am alive!");
         gridObject = new GameObject("LimbName");
         buildGrid = gridObject.AddComponent<Grid>();
-
+        if (TypeID == "Alien")
+            IsAlien = true;
     }
 
     private void Update()
@@ -118,21 +122,27 @@ public class BuildSystem : MonoBehaviour
                 currentRend = blockTemplate.AddComponent<SpriteRenderer>();
                 // set sprite to match current block type
                 currentRend.sprite = currentBlock.blockSprite;
+                currentRend.sortingOrder = 1000;
+
 
             }
         }
 
         if (buildModeOn && blockTemplate != null)
         {
+            Vector3 scaler = blockTemplate.transform.localScale;
+            float rotz = blockTemplate.transform.localEulerAngles.z;
+
             if (Input.GetKeyDown("r"))
             {
                 //oldrotation = rotation;
-                blockTemplate.transform.Rotate(0, 0, 90);
+                if(!IsAlien)
+                    blockTemplate.transform.Rotate(0, 0, 90);
+                else
+                    blockTemplate.transform.Rotate(0, 0, 60);
             }
             if (Input.GetKeyDown("f"))
             {
-                Vector3 scaler = blockTemplate.transform.localScale;
-                float rotz = blockTemplate.transform.localEulerAngles.z;
                 if ((rotz > 85 && rotz < 95) || (rotz > 265 && rotz < 275))
                     scaler.y *= -1;
                 else
@@ -143,19 +153,15 @@ public class BuildSystem : MonoBehaviour
             //float newPosY = Mathf.Round(Camera.main.ScreenToWorldPoint(Input.mousePosition).y / blockSizeMod) * blockSizeMod;
             //Debug.Log((Mathf.Round(Input.mousePosition.y / blockSizeMod)*blockSizeMod).ToString());
             Vector3 loc = Utilities.GetWorldPositionOnPlane(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f), 0f);
-            blockTemplate.transform.position = new Vector3(Mathf.Round(loc.x / blockSizeMod) * blockSizeMod, Mathf.Round(loc.y / blockSizeMod) * blockSizeMod, 0f);
-
-
-RaycastHit2D rayhit;
-
-            if (currentBlock.isSolid == true)
-            {
-                rayhit = Physics2D.Raycast(blockTemplate.transform.position, Vector2.zero, Mathf.Infinity, solidNoBuildLayer);
-            }
+            if (!IsAlien)
+                blockTemplate.transform.position = new Vector3(Mathf.Round(loc.x / blockSizeMod) * blockSizeMod, Mathf.Round(loc.y / blockSizeMod) * blockSizeMod, 0f);
             else
-            {
-                rayhit = Physics2D.Raycast(blockTemplate.transform.position, Vector2.zero, Mathf.Infinity, fakeNoBuildLayer);
-            }
+                blockTemplate.transform.position = Utilities.RoundToHexCoordinates(loc, blockSizeMod*2);
+
+            blockTemplate.transform.position += Quaternion.Euler(0f,0f,rotz)*new Vector3(currentBlock.spriteOffset.x*scaler.x, currentBlock.spriteOffset.y*scaler.y, 0f);
+            RaycastHit2D rayhit;
+
+            rayhit = Physics2D.Raycast(loc, Vector2.zero, Mathf.Infinity, allBlocksLayer);
 
             if (rayhit.collider != null)
             {
@@ -163,12 +169,17 @@ RaycastHit2D rayhit;
             }
             else
             {
-                buildBlocked = false;
+                rayhit = Physics2D.Raycast(blockTemplate.transform.position, Vector2.zero, Mathf.Infinity, allBlocksLayer);
+                if (rayhit.collider != null)
+                {
+                    buildBlocked = true;
+                }
+                else
+                    buildBlocked = false;
             }
             if (buildBlocked)
             {
                 currentRend.color = new Color(1f, 0f, 0f, 1f);
-                blockTemplate.layer = 1;
             }
             else
             {
@@ -212,6 +223,7 @@ RaycastHit2D rayhit;
                 newBlock.transform.localScale = blockTemplate.transform.localScale;
                 newBlock.transform.rotation = blockTemplate.transform.rotation;
                 SpriteRenderer newRend = newBlock.AddComponent<SpriteRenderer>();
+                Debug.Log(Utilities.ConvertToHexagonalCoordinates(newBlock.transform.position, blockSizeMod).ToString());
                 newRend.sprite = currentBlock.blockSprite;
                 //Debug.Log(currentBlock.collider);
                 PolygonCollider2D shape;
@@ -272,22 +284,26 @@ RaycastHit2D rayhit;
     {
         limb = new BodyPart();
         limb.SubTypeID = gridObject.name;
-        limb.TypeID = "Limb";
+        limb.TypeID = TypeID;
         Debug.Log(gridObject.transform.childCount.ToString());
         Vector2 ogVector = Vector2Int.zero;
         bool gotit = false;
         foreach (Transform child in gridObject.transform)
         {
             var item = child.gameObject;
-            if(!gotit)
-            {
-                ogVector = new Vector2(item.transform.position.x, item.transform.position.y);
-                gotit = true;
-            }
+            
             //Debug.Log("DEBUG: VECTOR CHILD: " + child.position.ToString());
             Block square = new Block();
             if (blockSys.blockLookup.TryGetValue(item.name, out square))
             {
+
+
+                if (!gotit)
+                {
+                    ogVector = new Vector2(item.transform.position.x, item.transform.position.y);
+                    gotit = true;
+                }
+
                 Block j = new Block();
                 j.TypeID = square.TypeID;
                 j.SubTypeID = square.SubTypeID;
@@ -295,11 +311,18 @@ RaycastHit2D rayhit;
                 //j.blockSprite = Resources.Load<Sprite>(square.pathSprite);
                 //j.isSolid = square.isSolid;
                 //j.collider = square.collider;
-                j.blockLocation = new SerializableVector2(new Vector2(child.position.x, child.position.y));
-                j.blockLocation = new SerializableVector2(j.blockLocation.ToVector2() - ogVector);
+                j.blockLocation = new SerializableVector2(new Vector2(child.position.x, child.position.y) - ogVector);
                 j.rotation = child.rotation.eulerAngles.z;
                 j.transformScale = new SerializableVector3(child.localScale);
                 j.pathSprite = square.pathSprite;
+
+                if(IsAlien)
+                {
+                    //Debug.Log()
+                    j.HexVector = new SerializableVector3(Utilities.ConvertToHexagonalCoordinates(child.transform.position-new Vector3(ogVector.x,ogVector.y,0f), blockSizeMod));
+                    j.HexBlock = true;
+                }
+
                 limb.blockList.Add(j);
             }
             else

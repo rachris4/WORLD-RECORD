@@ -25,12 +25,13 @@ public class DefinitionManager : MonoBehaviour
         //sys.allBlockTypes = blockDefs.blockDefinitions;
         sys.Init();
         BuildSystem build = GetComponent<BuildSystem>();
-        build.blockSys = sys;
+        if(build != null)
+            build.blockSys = sys;
 //return;
         foreach(var def in definitions.chassisDefinitions)
         {
-            Chassis god = new Chassis(def);
-            Chassis eve = new Chassis(def, "yeb");
+            //Chassis god = new Chassis(def);
+            //Chassis eve = new Chassis(def, "yeb");
         }
 
 
@@ -83,11 +84,21 @@ public class DefinitionSet
     public Dictionary<string, ProjectileWeaponDefinition> projectileWeaponDict = new Dictionary<string, ProjectileWeaponDefinition>();
     public HashSet<string> projectileWeaponSubTypeList = new HashSet<string>();
 
+    [XmlArray("EnergyWeaponDefinitions")]
+    [XmlArrayItem("EnergyWeaponDefinition", typeof(EnergyWeaponDefinition))]
+    public HashSet<EnergyWeaponDefinition> energyWeaponDefinitions = new HashSet<EnergyWeaponDefinition>();
+    [XmlIgnore]
+    public Dictionary<string, EnergyWeaponDefinition> energyWeaponDict = new Dictionary<string, EnergyWeaponDefinition>();
+    public HashSet<string> energyWeaponSubtypeIDList = new HashSet<string>();
+
 
     [XmlArray("Blueprints")]
     [XmlArrayItem("Blueprint", typeof(BodyPart))]
     public HashSet<BodyPart> blueprints = new HashSet<BodyPart>();
     public HashSet<string> blueprintSubTypeIdList = new HashSet<string>();
+    [XmlIgnore]
+    public Dictionary<string, BodyPart> blueprintDict = new Dictionary<string, BodyPart>();
+
     //public Dictionary<string, BodyPart> blueprintDict = new Dictionary<string, BodyPart>();
 
     public void Initialize()
@@ -147,6 +158,18 @@ public class DefinitionSet
                 projectileDefinitions.Add(item);
                 projectileDict.Add(item.SubTypeID, item);
             }
+            foreach (EnergyWeaponDefinition item in temp.energyWeaponDefinitions) // YENERGY
+            {
+                if (energyWeaponSubtypeIDList.Contains(item.SubTypeID))
+                {
+                    Debug.Log("SKREECH! Subtypeids clashed. Idiot.");
+                    continue;
+                }
+
+                energyWeaponSubtypeIDList.Add(item.SubTypeID);
+                energyWeaponDefinitions.Add(item);
+                energyWeaponDict.Add(item.SubTypeID, item);
+            }
         }
 
         Debug.Log("block definitions loaded : " + blockDefinitions.Count.ToString());
@@ -174,6 +197,7 @@ public class DefinitionSet
                 //blueprintDict.Add(item.SubTypeID, item);
                 blueprintSubTypeIdList.Add(item.SubTypeID);
                 blueprints.Add(item);
+                blueprintDict.Add(item.SubTypeID, item);
             }
         }
 

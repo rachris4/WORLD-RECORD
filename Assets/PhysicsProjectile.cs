@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
 
-public class Projectile : MonoBehaviour
+public class PhysicsProjectile : MonoBehaviour
 {
     [SerializeField]
     public int Fuse;
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 
         gameObject.transform.parent = source.transform;
         Acceleration = def.Acceleration.ToVector2() * wepdef.SpeedMult;
-        gameObject.transform.rotation = source.transform.rotation;
+        gameObject.transform.rotation = Utilities.RealRotation(source);
         body.velocity = gameObject.transform.rotation * def.Velocity.ToVector3() * wepdef.SpeedMult; //gameObject.transform.rotation * 
         gameObject.transform.localPosition = wepdef.barrelVector.ToVector3(); //gameObject.transform.rotation*
         gameObject.transform.localScale = source.transform.localScale;
@@ -50,12 +50,21 @@ public class Projectile : MonoBehaviour
 
         if (def.destructionProperties != null)
         {
-            var healthobject = gameObject.AddComponent<Destroyable>();
+            //var healthobject = gameObject.AddComponent<Destroyable>();
             //Debug.Log(otherSquare.destructionProperties.Threshold.ToString());
-            healthobject.Initialize(def.destructionProperties);
+            //healthobject.Initialize(def.destructionProperties);
         }
 
         gameObject.transform.parent = null;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("Ouch!");
+        if (col.relativeVelocity.magnitude > 5)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -118,6 +127,8 @@ public class ProjectileDefinition : DefinitionBase
     public float AngularDrag; // drag
     [XmlElement("GravityScale")]
     public float GravityScale; // gravity
+    [XmlElement("Impulse")]
+    public float Impulse; //for aesthetics and cheese
 }
 
 public class SubmunitionDefinition
