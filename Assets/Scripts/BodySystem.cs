@@ -281,6 +281,9 @@ public class BodyPart : DefinitionBase
             }
         }
 
+        MeshTriangle tri = new MeshTriangle();
+        tri.Triangles = new GameObject[3];
+
         for (int i = 0; i < AlienSquares.Count; i++)
         {
             GameObject newBlock = AlienBlocks[i];
@@ -291,6 +294,8 @@ public class BodyPart : DefinitionBase
             newBlock.TryGetComponent<Rigidbody2D>(out newRigid);
 
             int springCount = 0;
+
+            Vector3[] hexNeighbours = Utilities.HexNeighbours(square.HexVector.ToVector3());
 
             foreach (Vector3 hexPt in Utilities.HexNeighbours(square.HexVector.ToVector3()))
             {
@@ -308,8 +313,8 @@ public class BodyPart : DefinitionBase
                 }
 
                 Block doubledef = AlienSquares[AlienBlocks.IndexOf(neighbourBlock)];
-            
-                MeshTriangle tri = new MeshTriangle();
+
+                tri = new MeshTriangle();
                 tri.Triangles = new GameObject[3];
 
                 HashSet<GameObject> triMesh = new HashSet<GameObject>();
@@ -338,21 +343,24 @@ public class BodyPart : DefinitionBase
                     if (!ogneighbor)
                         continue;
 
+                    triMesh.Clear();
                     triMesh.Add(newBlock);
                     triMesh.Add(neighbourBlock);
                     triMesh.Add(doubleNeighbor);
 
-                    if(!alienTrisMesh.Contains(triMesh))
+                    bool skip = false;
+
+                    foreach (HashSet<GameObject> hash in alienTrisMesh)
                     {
-                        alienTrisMesh.Add(triMesh);
-                        int jj = 0;
-                        foreach(GameObject obj  in triMesh)
+                        if (hash.IsSupersetOf(triMesh))
                         {
-                            tri.Triangles[jj] = obj;
-                            jj++;
+                            skip = true;
+                            break;
                         }
-                        alienTris.Add(tri);
                     }
+
+                    if (!skip)
+                        alienTrisMesh.Add(triMesh);
 
 
                     /*
@@ -400,7 +408,7 @@ public class BodyPart : DefinitionBase
                     newspring.dampingRatio = (square.AlienProperties.SpringDamping + doubledef.AlienProperties.SpringDamping) / 2f;
                     newspring.frequency = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) / 2f;
                     newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
-                    
+
                     /*
                     var newslide = newBlock.AddComponent<SliderJoint2D>();
                     newslide.connectedBody = otherRigid;
@@ -451,6 +459,23 @@ public class BodyPart : DefinitionBase
 
             }
 
+        }
+
+        
+
+        foreach (HashSet<GameObject> hash in alienTrisMesh)
+        {
+            int jj = 0;
+            tri = new MeshTriangle();
+            tri.Triangles = new GameObject[3];
+
+            foreach (GameObject obj in hash)
+            {
+
+                tri.Triangles[jj] = obj;
+                jj++;
+            }
+            alienTris.Add(tri);
         }
 
         if (AlienSquares.Count > 0 && alienTris.Count > 0)

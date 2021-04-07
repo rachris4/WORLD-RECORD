@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 
+[ExecuteInEditMode]
 public class FleshMesh : MonoBehaviour
 {
 
