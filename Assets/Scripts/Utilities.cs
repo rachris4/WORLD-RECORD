@@ -13,6 +13,11 @@ public static class Utilities
         return ray.GetPoint(distance);
     }
 
+    static public T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+    {
+        return gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
+    }
+
     public static Rigidbody2D FindRigidbody(GameObject obj)
     {
         var rigid = obj.GetComponent<Rigidbody2D>();
@@ -32,12 +37,52 @@ public static class Utilities
         return null;
     }
 
+    public static void FindChildRigidBodies(GameObject obj, ref HashSet<Rigidbody2D> result, int limit = 100, int layer = 0)
+    {
+        layer++;
+
+        foreach (Transform child in obj.transform)
+        {
+            var rigid = child.gameObject.GetComponent<Rigidbody2D>();
+            if (rigid != null)
+                result.Add(rigid);
+            if(layer < limit)
+                FindChildRigidBodies(child.gameObject, ref result,limit,layer);
+        }
+    }
+
+    public static void RealScale(GameObject obj, ref Vector3 scale)
+    {
+        var newscale = obj.transform.localScale;
+        scale = new Vector3(scale.x * newscale.x, scale.y * newscale.y, scale.z * newscale.z);
+
+        if(obj.transform.parent != null)
+        {
+            RealScale(obj.transform.parent.gameObject, ref scale);
+        }
+    }
+
+    public static float RealRotationZFloat(GameObject obj, float rotz)
+    {
+
+        Vector3 scaler = new Vector3(1f, 1f, 1f);//obj.transform.localScale;
+        RealScale(obj, ref scaler);
+
+        if (scaler.x < 0)
+        {
+            rotz += 180f;
+        }
+
+        return rotz;
+    }
+
     public static Quaternion RealRotation(GameObject obj)
     {
 
         Vector3 eulerAngs = obj.transform.rotation.eulerAngles;
         float rotz = eulerAngs.z;
-        Vector3 scaler = obj.transform.localScale;
+        Vector3 scaler = new Vector3(1f, 1f, 1f);//obj.transform.localScale;
+        RealScale(obj, ref scaler);
 
         if(scaler.x < 0)
         {
@@ -74,6 +119,8 @@ public static class Utilities
 
     public static Vector3 ConvertToHexagonalCoordinates(Vector3 cartCoord, float gridSpacing)
     {
+        gridSpacing /= 2f;
+
         cartCoord.y *= -1f;
 
         var q = Mathf.Round((Mathf.Sqrt(3) / 3.5f * cartCoord.x - cartCoord.y/3.5f) / gridSpacing);

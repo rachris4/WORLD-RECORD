@@ -9,6 +9,29 @@
       <collider>box</collider>
       <DestructionProperties Health="1000" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+    <BlockDefinition TypeID="FixedThruster">
+      <SubTypeID>thruster</SubTypeID>
+      <DisplayName>Fixed Thruster</DisplayName>
+      <pathSprite>Sprites/thruster</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
+    <BlockDefinition TypeID="RotatingThruster">
+      <SubTypeID>thrusterRotator</SubTypeID>
+      <DisplayName>Rotating Thruster</DisplayName>
+      <pathSprite>Sprites/jointball</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <TurretProperties>
+        <TurretPathSprite>Sprites/turretbarrel</TurretPathSprite>
+        <AI>false</AI>
+        <AIRange>0</AIRange>
+        <RotationSpeed>10</RotationSpeed>
+        <TurretOffset x="0" y="0" />
+      </TurretProperties>
+    </BlockDefinition>
     <BlockDefinition TypeID="Armor">
       <SubTypeID>armor_triangle</SubTypeID>
       <DisplayName>Corner Armor</DisplayName>
@@ -41,12 +64,23 @@
       <isSolid>true</isSolid>
       <collider>box</collider>
       <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <JointProperties TypeID ="Stator">
+        <JointPathSprite>Sprites/jointbearing</JointPathSprite>
+      </JointProperties>
     </BlockDefinition>
     <BlockDefinition TypeID="JointRotor">
       <SubTypeID>simple_ball</SubTypeID>
       <DisplayName>socket</DisplayName>
       <pathSprite>Sprites/jointball</pathSprite>
       <flippedPathSprite>Sprites/jointsocket</flippedPathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
+    <BlockDefinition TypeID="GrappleGun">
+      <SubTypeID>grapple</SubTypeID>
+      <DisplayName>grapple</DisplayName>
+      <pathSprite>Sprites/grapplelauncher</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
       <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>

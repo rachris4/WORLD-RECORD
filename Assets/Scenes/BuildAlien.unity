@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 1099831405}
   - component: {fileID: 1099831404}
   m_Layer: 0
-  m_Name: AssembleBlob
+  m_Name: AlienFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,11 +635,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099831403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f089ee7802817164e983c5f7d2749f4b, type: 3}
+  m_Script: {fileID: 11500000, guid: e08acef21ab96ed41b172748c847a637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadedSubTypeID: Blob
+  LoadedSubTypeID: LimbName
   attachCamera: 0
+  objList: []
 --- !u!4 &1099831405
 Transform:
   m_ObjectHideFlags: 0

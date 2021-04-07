@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+using UnityEditor;
 
 public class FleshMesh : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class FleshMesh : MonoBehaviour
         mesh = new Mesh();
         filter = gameObject.GetComponent<MeshFilter>();
         render = gameObject.GetComponent<MeshRenderer>();
+        render.sortingOrder = -30;
         Material newMat = Resources.Load<Material>("mat");
         render.material = newMat;
     }
@@ -34,6 +37,8 @@ public class FleshMesh : MonoBehaviour
         int[] triangles = new int[alienTris.Count* 3];
 
         int index = 0;
+
+        Debug.Log(alienTris.Count.ToString());
 
         List<MeshTriangle> removalq = new List<MeshTriangle>();
 
@@ -63,7 +68,7 @@ public class FleshMesh : MonoBehaviour
                 try
                 {
                     var obj = tri.Triangles[i];
-                    vertices[index] = obj.transform.position;
+                    vertices[index] = obj.transform.position - new Vector3(0f,0f,-0.1f);
                     uvs[index] = new Vector2(0, 0);
                     triangles[index] = index;
                 }
@@ -85,4 +90,52 @@ public class FleshMesh : MonoBehaviour
         mesh.triangles = triangles;
         filter.mesh = mesh;
     }
+}
+
+[CustomEditor(typeof(MeshRenderer))]
+public class MeshRendererSortingEditor : Editor
+{
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        MeshRenderer renderer = target as MeshRenderer;
+
+
+        var layers = SortingLayer.layers;
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUI.BeginChangeCheck();
+        int newId = DrawSortingLayersPopup(renderer.sortingLayerID);
+        if (EditorGUI.EndChangeCheck())
+        {
+            renderer.sortingLayerID = newId;
+        }
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUI.BeginChangeCheck();
+        int order = EditorGUILayout.IntField("Sorting Order", renderer.sortingOrder);
+        if (EditorGUI.EndChangeCheck())
+        {
+            renderer.sortingOrder = order;
+        }
+        EditorGUILayout.EndHorizontal();
+
+    }
+
+    int DrawSortingLayersPopup(int layerID)
+    {
+        var layers = SortingLayer.layers;
+        var names = layers.Select(l => l.name).ToArray();
+        if (!SortingLayer.IsValid(layerID))
+        {
+            layerID = layers[0].id;
+        }
+        var layerValue = SortingLayer.GetLayerValueFromID(layerID);
+        var newLayerValue = EditorGUILayout.Popup("Sorting Layer", layerValue, names);
+        return layers[newLayerValue].id;
+    }
+
 }

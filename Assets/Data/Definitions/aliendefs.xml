@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BlockDefinitions>
-    <BlockDefinition TypeID="Armor">
+    <BlockDefinition TypeID="Bone">
       <SubTypeID>bone</SubTypeID>
       <DisplayName>bone</DisplayName>
       <pathSprite>Sprites/bone</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="750" Threshold ="2" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+      <DestructionProperties Health="300" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+      <!--
       <AlienProperties TypeID ="Bone">
         <Mass>2</Mass>
         <MaterialBounciness>0</MaterialBounciness>
@@ -15,15 +16,15 @@
         <SpringDamping>10</SpringDamping>
         <SpringConstant>100</SpringConstant>
         <Plasticity>100</Plasticity>
-      </AlienProperties>
+      </AlienProperties>-->
     </BlockDefinition>
     <BlockDefinition TypeID="Armor">
       <SubTypeID>flesh</SubTypeID>
       <DisplayName>flesh</DisplayName>
-      <pathSprite>Sprites/veins</pathSprite>
+      <pathSprite>Sprites/scale</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="500" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <AlienProperties TypeID ="Flesh">
         <Mass>0.2</Mass>
         <MaterialBounciness>0.5</MaterialBounciness>

@@ -32,5 +32,13 @@
         <TurretOffset x="0" y="0" />
       </TurretProperties>
     </BlockDefinition>
+    <BlockDefinition TypeID="MeleePiercer">
+      <SubTypeID>basic_blade</SubTypeID>
+      <DisplayName>Simple Blade 2x1</DisplayName>
+      <pathSprite>Sprites/blade2x1</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <SpriteOffset x="-0.5" y="0"/>
+    </BlockDefinition>
   </BlockDefinitions>
 </Definitions>

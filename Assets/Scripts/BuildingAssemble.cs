@@ -92,7 +92,7 @@ public class BuildingAssemble : MonoBehaviour
     void Initialize()
     {
 
-        if (DefinitionManager.definitions.chassisDefinitions == null)
+        if (DefinitionManager.definitions.blueprints == null)
             return;
 
         var currentRend = gameObject.GetComponent<SpriteRenderer>();

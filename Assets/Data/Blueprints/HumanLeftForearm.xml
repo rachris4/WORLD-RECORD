@@ -2,7 +2,6 @@
 <Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BlockDefinitions />
   <SubTypeIdList />
-  <ChassisDefinitions />
   <ProjectileDefinitions />
   <projectileSubTypeList />
   <ProjectileWeaponDefinitions />
@@ -11,7 +10,7 @@
   <energyWeaponSubtypeIDList />
   <Blueprints>
     <Blueprint TypeID="Robot">
-      <SubTypeID>HumanLeftForearm</SubTypeID>
+      <SubTypeID>HumanLeftForeArm</SubTypeID>
       <Blocks>
         <Block TypeID="Armor">
           <SubTypeID>armor_slope_top</SubTypeID>
@@ -21,6 +20,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="0" y="0" />
           <rotation>90</rotation>
@@ -37,6 +43,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="0" />
           <rotation>90</rotation>
@@ -53,6 +66,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="0" y="-1" />
           <rotation>90</rotation>
@@ -69,6 +89,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="0" y="-2" />
           <rotation>90</rotation>
@@ -85,6 +112,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-1" />
           <rotation>90</rotation>
@@ -101,6 +135,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-2" />
           <rotation>90</rotation>
@@ -117,6 +158,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-1" />
           <rotation>270</rotation>
@@ -133,6 +181,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-2" />
           <rotation>270</rotation>
@@ -149,6 +204,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-3" />
           <rotation>270</rotation>
@@ -165,6 +227,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-3" />
           <rotation>270</rotation>
@@ -181,6 +250,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-4" />
           <rotation>270</rotation>
@@ -197,6 +273,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="0" y="-3" />
           <rotation>270</rotation>
@@ -213,6 +296,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="0" y="-4" />
           <rotation>270</rotation>
@@ -229,6 +319,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-5" />
           <rotation>270</rotation>
@@ -245,6 +342,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="-6" />
           <rotation>270</rotation>
@@ -261,6 +365,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-3" />
           <rotation>270</rotation>
@@ -277,6 +388,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-4" />
           <rotation>270</rotation>
@@ -293,6 +411,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-5" />
           <rotation>270</rotation>
@@ -309,6 +434,16 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+            <BodyParts>
+              <BodyPart>HumanGrinder</BodyPart>
+            </BodyParts>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="2" y="-6" />
           <rotation>0</rotation>
@@ -325,6 +460,13 @@
           <SpriteOffset x="0" y="0" />
           <weapon />
           <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
           <entityID>0</entityID>
           <blockLocation x="1" y="0" />
           <rotation>0</rotation>
@@ -334,6 +476,18 @@
           <refIndex>0</refIndex>
         </Block>
       </Blocks>
+      <Controller ControllerType="MouseTrack">
+        <StrengthMod>1000</StrengthMod>
+        <SpeedMod>20</SpeedMod>
+        <P>1</P>
+        <I>1</I>
+        <D>1</D>
+        <Rotation>0</Rotation>
+        <Border>0</Border>
+        <SpeedLimit>50</SpeedLimit>
+        <Wavelength>100</Wavelength>
+        <Offset>-90</Offset>
+      </Controller>
       <VisualLayer>0</VisualLayer>
       <Flippable>true</Flippable>
       <Max>
@@ -344,6 +498,10 @@
         <x>0</x>
         <y>0</y>
       </Min>
+      <jointLocation>
+        <x>0</x>
+        <y>0</y>
+      </jointLocation>
     </Blueprint>
   </Blueprints>
   <blueprintSubTypeIdList />

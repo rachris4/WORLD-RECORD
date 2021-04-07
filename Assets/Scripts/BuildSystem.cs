@@ -156,7 +156,7 @@ public class BuildSystem : MonoBehaviour
             if (!IsAlien)
                 blockTemplate.transform.position = new Vector3(Mathf.Round(loc.x / blockSizeMod) * blockSizeMod, Mathf.Round(loc.y / blockSizeMod) * blockSizeMod, 0f);
             else
-                blockTemplate.transform.position = Utilities.RoundToHexCoordinates(loc, blockSizeMod*2);
+                blockTemplate.transform.position = Utilities.RoundToHexCoordinates(loc, blockSizeMod);
 
             blockTemplate.transform.position += Quaternion.Euler(0f,0f,rotz)*new Vector3(currentBlock.spriteOffset.x*scaler.x, currentBlock.spriteOffset.y*scaler.y, 0f);
             RaycastHit2D rayhit;
@@ -225,7 +225,9 @@ public class BuildSystem : MonoBehaviour
                 SpriteRenderer newRend = newBlock.AddComponent<SpriteRenderer>();
                 Debug.Log(Utilities.ConvertToHexagonalCoordinates(newBlock.transform.position, blockSizeMod).ToString());
                 newRend.sprite = currentBlock.blockSprite;
-                //Debug.Log(currentBlock.collider);
+
+                InitializeTypeIDBuilder(newBlock,currentBlock);
+
                 PolygonCollider2D shape;
                 switch (currentBlock.collider)
                 {
@@ -280,6 +282,37 @@ public class BuildSystem : MonoBehaviour
         }
     }
 
+    public void InitializeTypeIDBuilder(GameObject obj, Block square)
+    {
+        switch (square.TypeID)
+        {
+            case "FixedWeaponBlock":
+                //InitializeFixedWeapon(obj);
+                break;
+            case "TurretBlock":
+                //InitializeTurret(obj);
+                break;
+            case "JointStator":
+                InitializeJointStator(obj);
+                break;
+            case "JointRotor":
+                InitializeJointRotor(obj);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void InitializeJointRotor(GameObject obj)
+    {
+
+    }
+
+    public void InitializeJointStator(GameObject obj)
+    {
+        var jb = obj.AddComponent<JointBuilder>();
+    }
+
     private void Save()
     {
         limb = new BodyPart();
@@ -308,18 +341,36 @@ public class BuildSystem : MonoBehaviour
                 j.TypeID = square.TypeID;
                 j.SubTypeID = square.SubTypeID;
                 j.DisplayName = square.DisplayName;
-                //j.blockSprite = Resources.Load<Sprite>(square.pathSprite);
+
                 //j.isSolid = square.isSolid;
                 //j.collider = square.collider;
-                j.blockLocation = new SerializableVector2(new Vector2(child.position.x, child.position.y) - ogVector);
+                j.blockLocation = new SerializableVector2(new Vector2(child.position.x, child.position.y));
                 j.rotation = child.rotation.eulerAngles.z;
                 j.transformScale = new SerializableVector3(child.localScale);
                 j.pathSprite = square.pathSprite;
+                j.TurretProperties = square.TurretProperties;
+                j.JointProperties = square.JointProperties;
+                if (j.JointProperties == null)
+                    j.JointProperties = new JointProperties();
+                if (j.TypeID == "JointRotor")
+                {
+                    ogVector = j.blockLocation.ToVector2();
+                }
+                var ab = item.GetComponent<JointBuilder>();
+                if(ab != null && ab.Bodyparts?.Length > 0)
+                {
+                    j.JointProperties.Bodyparts = new string[ab.Bodyparts.Length];
+                    ab.Bodyparts.CopyTo(j.JointProperties.Bodyparts,0);
+                    j.JointProperties.rotationMax = ab.rotationMax;
+                    j.JointProperties.rotationMin = ab.rotationMin;
+                    j.JointProperties.Mirror = ab.Mirror;
+                }
+                
 
                 if(IsAlien)
                 {
                     //Debug.Log()
-                    j.HexVector = new SerializableVector3(Utilities.ConvertToHexagonalCoordinates(child.transform.position-new Vector3(ogVector.x,ogVector.y,0f), blockSizeMod));
+                    j.HexVector = new SerializableVector3(Utilities.ConvertToHexagonalCoordinates(child.transform.position, blockSizeMod));
                     j.HexBlock = true;
                 }
 
@@ -329,11 +380,60 @@ public class BuildSystem : MonoBehaviour
             {
                 continue;
             }
-
-            //child is your child transform
+            /*
+            foreach(Block j in limb.blockList)
+            {
+                var vec = j.blockLocation.ToVector2();
+                vec -= ogVector;
+                j.blockLocation = new SerializableVector2(new Vector2(vec.x, vec.y));
+                if (IsAlien)
+                {
+                    j.HexVector = new SerializableVector3(Utilities.ConvertToHexagonalCoordinates(vec, blockSizeMod));
+                }
+            }
+            */
         }
-        /// something foreach hinge do thing
+        var jb = gridObject.GetComponent<ControllerBuilder>();
+
+        if (limb.Controller == null)
+            limb.Controller = new LimbControllerDefinition();
+
+        if (jb != null)
+        {
+            limb.Controller.D = jb.D;
+            limb.Controller.P = jb.P;
+            limb.Controller.I = jb.I;
+            limb.Controller.Wavelength = jb.Wavelength;
+            limb.Controller.StrengthMod = jb.StrengthMod;
+            limb.Controller.SpeedMod = jb.SpeedMod;
+            limb.Controller.SpeedLimit = jb.SpeedLimit;
+            limb.Controller.Type = jb.Type;
+            limb.Controller.Offset = jb.Offset;
+            //jb.Rotation
+        }
+
+        //Debug.Log(limb.Controller.Type);
+
         limb.Save(limb.SubTypeID);
+    }
+
+    public void InitializeLimbControllerBuilder(GameObject obj, LimbControllerDefinition def = null)
+    {
+        var jb = obj.AddComponent<ControllerBuilder>();
+
+        if(def == null)
+            return;
+
+        jb.D = def.D;
+        jb.P = def.P;
+        jb.I = def.I;
+        jb.Wavelength = def.Wavelength;
+        jb.StrengthMod = def.StrengthMod;
+        jb.SpeedMod = def.SpeedMod;
+        jb.SpeedLimit = def.SpeedLimit;
+        jb.Type = def.Type;
+        jb.Offset = def.Offset;
+        jb.Rotation = def.Rotation;
     }
 
     private void Load() //jfc what a load drop
@@ -345,7 +445,16 @@ public class BuildSystem : MonoBehaviour
         var def = BodyPart.Load(name);
         foreach(BodyPart bp in def.blueprints)
         {
-            foreach(Block square in bp.blockList)
+
+
+            if (bp.Controller != null)
+            {
+                InitializeLimbControllerBuilder(gridObject, bp.Controller);
+            }
+            else
+                InitializeLimbControllerBuilder(gridObject);
+
+            foreach (Block square in bp.blockList)
             {
                 GameObject newBlock = new GameObject(square.SubTypeID);
                 newBlock.transform.position = square.blockLocation.ToVector3();
@@ -354,7 +463,20 @@ public class BuildSystem : MonoBehaviour
                 newBlock.transform.rotation = Quaternion.Euler(0f, 0f, square.rotation);
                 SpriteRenderer newRend = newBlock.AddComponent<SpriteRenderer>();
                 newRend.sprite = Resources.Load<Sprite>(square.pathSprite);
-                //Debug.Log(currentBlock.collider);
+
+                if (square.JointProperties != null && square.TypeID == "JointStator")
+                {
+                    JointBuilder jb = newBlock.AddComponent<JointBuilder>();
+                    jb.Bodyparts = square.JointProperties.Bodyparts;
+                    jb.Mirror = square.JointProperties.Mirror;
+                    jb.rotationMin = square.JointProperties.rotationMin;
+                    jb.rotationMax = square.JointProperties.rotationMax;
+                }
+                else if (square.TypeID == "JointStator")
+                {
+                    JointBuilder jb = newBlock.AddComponent<JointBuilder>();
+                }
+
                 PolygonCollider2D shape;
                 switch (square.collider)
                 {
@@ -384,3 +506,5 @@ public class BuildSystem : MonoBehaviour
         }
     }
 }
+
+

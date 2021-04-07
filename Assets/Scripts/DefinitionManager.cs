@@ -27,12 +27,6 @@ public class DefinitionManager : MonoBehaviour
         BuildSystem build = GetComponent<BuildSystem>();
         if(build != null)
             build.blockSys = sys;
-//return;
-        foreach(var def in definitions.chassisDefinitions)
-        {
-            //Chassis god = new Chassis(def);
-            //Chassis eve = new Chassis(def, "yeb");
-        }
 
 
         //BuildSystem build = gameObject.AddComponent<BuildSystem>();
@@ -63,11 +57,6 @@ public class DefinitionSet
     [XmlIgnore]
     public Dictionary<string, BlockDefinition> blockDict = new Dictionary<string, BlockDefinition>();
     public HashSet<string> SubTypeIdList = new HashSet<string>();
-
-
-    [XmlArray("ChassisDefinitions")]
-    [XmlArrayItem("ChassisDefinition", typeof(ChassisDefinition))]
-    public HashSet<ChassisDefinition> chassisDefinitions = new HashSet<ChassisDefinition>();
 
     [XmlArray("ProjectileDefinitions")]
     [XmlArrayItem("ProjectileDefinition", typeof(ProjectileDefinition))]
@@ -123,17 +112,7 @@ public class DefinitionSet
                 blockDefinitions.Add(item);
                 blockDict.Add(item.SubTypeID, item);
             }
-            foreach (ChassisDefinition item in temp.chassisDefinitions)
-            {
-                if (SubTypeIdList.Contains(item.SubTypeID))
-                {
-                    Debug.Log("SKREECH! Subtypeids clashed. Idiot.");
-                    continue;
-                }
 
-                SubTypeIdList.Add(item.SubTypeID);
-                chassisDefinitions.Add(item);
-            }
             foreach (ProjectileWeaponDefinition item in temp.projectileWeaponDefinitions) // WEAPONS
             {
                 if (projectileWeaponSubTypeList.Contains(item.SubTypeID))
@@ -173,7 +152,6 @@ public class DefinitionSet
         }
 
         Debug.Log("block definitions loaded : " + blockDefinitions.Count.ToString());
-        Debug.Log("chassis definitions loaded : " + chassisDefinitions.Count.ToString());
         Debug.Log("projectile definitions loaded : " + projectileDefinitions.Count.ToString());
         Debug.Log("weapon definitions loaded : " + projectileWeaponDefinitions.Count.ToString());
 

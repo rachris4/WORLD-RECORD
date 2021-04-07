@@ -47,6 +47,9 @@ public class EnergyWeapon : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (manager == null)
+            return;
+
         bool keypressed = false;
 
         if (Input.GetKey(keybind) && ShotsQueued == 0)

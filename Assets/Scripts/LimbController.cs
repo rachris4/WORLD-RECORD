@@ -7,7 +7,7 @@ public class LimbController : MonoBehaviour
     [SerializeField]
     public string Type;
     [SerializeField]
-    public float strengthMod = 1f;
+    public float strengthMod = 300f;
     [SerializeField]
     public float speedMod = 1f;
     [SerializeField]
@@ -21,7 +21,7 @@ public class LimbController : MonoBehaviour
     [SerializeField]
     public float D = 0f;
     [SerializeField]
-    public float offset = 0f;
+    public float offset = 1f;
     [SerializeField]
     public int wavelength = 100;
     [SerializeField]
@@ -30,7 +30,7 @@ public class LimbController : MonoBehaviour
     public float frontRotation = 0f;
 
     public GameObject parent;
-    private HingeJoint2D joint;
+    public HingeJoint2D joint;
     private Rigidbody2D rigidBody;
     private PhysicsMaterial2D mat;
     private PID pid;
@@ -38,9 +38,11 @@ public class LimbController : MonoBehaviour
 
     public int blockIntegrity = 1;
     private int tick;
-    private float max;
-    private float min;
+    public float max;
+    public float min;
     private float storage;
+    private bool grounded;
+
     string boi;
 
     public void Initialize(LimbControllerDefinition def)
@@ -77,17 +79,6 @@ public class LimbController : MonoBehaviour
         if (Type == null)
             return;
 
-        if (parent != null && joint == null)
-        {
-            foreach (HingeJoint2D j in parent.GetComponents<HingeJoint2D>())
-            {
-                if (j.connectedBody.gameObject.name == gameObject.name)
-                {
-                    joint = j;
-                }
-            }
-        }
-
         pid.pFactor = P;
         pid.dFactor = D;
         pid.iFactor = I;
@@ -114,6 +105,10 @@ public class LimbController : MonoBehaviour
 
                 Stable();
                 break;
+            case "Spin":
+
+                Spin();
+                break;
 
             case "Thigh":
 
@@ -122,7 +117,7 @@ public class LimbController : MonoBehaviour
                 break;
 
             default:
-
+                Stable();
                 break;
         }
     }
@@ -132,11 +127,11 @@ public class LimbController : MonoBehaviour
         bool move = false;
         if (Input.GetKey("d"))
         {
-            move = true;
+            //move = true;
         }
         if (Input.GetKey("a"))
         {
-            move = true;
+            //move = true;
         }
         var motor = new JointMotor2D();
 
@@ -150,9 +145,33 @@ public class LimbController : MonoBehaviour
         float displacement = parent.transform.rotation.eulerAngles.z + frontRotation;
         float angle = gameObject.transform.rotation.eulerAngles.z + frontRotation;
         //bool inbd = AngleInBounds(desiredAngle, displacement, joint.limits, border);
-
         joint.useMotor = true;
         motor.motorSpeed = pid.Update(displacement, angle, Time.deltaTime, speedLimit);
+        motor.maxMotorTorque = 10 * strengthMod;
+        joint.motor = motor;
+    }
+
+    public void Spin()
+    {
+        bool move = false;
+        if (Input.GetKey("r"))
+        {
+            move = true;
+        }
+        var motor = new JointMotor2D();
+
+        if (!move)
+        {
+            joint.useMotor = true;
+            joint.useLimits = false;
+            motor.motorSpeed = 0;
+            motor.maxMotorTorque = 10 * strengthMod;
+            joint.motor = motor;
+        }
+
+        joint.useMotor = true;
+        joint.useLimits = false;
+        motor.motorSpeed = speedLimit;
         motor.maxMotorTorque = 10 * strengthMod;
         joint.motor = motor;
     }
@@ -165,39 +184,43 @@ public class LimbController : MonoBehaviour
         {
             direction++;
             tick++;
+            joint.limits = new JointAngleLimits2D { max = max, min = min };
         }
         if (Input.GetKey("a"))
         {
             direction--;
-            if(tick == oldtick)
+            joint.limits = new JointAngleLimits2D { max = -min, min = min };
+            if (tick == oldtick)
                 tick++;
         }
         var motor = new JointMotor2D();
-        if (tick + offset < wavelength)
+        if (tick + offset % (wavelength*2) < wavelength)
         {
-            if(tick + offset - wavelength == -1)
+            /*
+            if(tick + offset % (wavelength*2) - wavelength == -1)
             {
                 motor.motorSpeed = 0;
                 motor.maxMotorTorque = 10 * strengthMod;
                 joint.motor = motor;
                 return;
-            }
+            }*/
             direction *= 1;
         }
-        else if (tick + offset < 2 * wavelength)
+        else if (tick + offset % (wavelength*2) < 2 * wavelength)
         {
-            if (tick + offset - 2*wavelength == -1)
+            /*
+            if (tick + offset % (wavelength*2) - 2*wavelength == -1)
             {
                 motor.motorSpeed = 0;
                 motor.maxMotorTorque = 10 * strengthMod;
                 joint.motor = motor;
                 return;
-            }
+            }*/
             direction *= -1;
         }
         else
         {
-            tick = -(int)offset;
+            tick = -(int)offset % (wavelength*2);
         }            
 
         float displacement = parent.transform.rotation.eulerAngles.z + frontRotation;
@@ -205,8 +228,13 @@ public class LimbController : MonoBehaviour
         float desiredAngle = angle + direction * Time.deltaTime * speedMod*10;
         if (direction == 0)
             desiredAngle = displacement;
-        //bool inbd = AngleInBounds(desiredAngle, displacement, joint.limits, border);
 
+        desiredAngle = Utilities.RealRotationZFloat(gameObject, desiredAngle);
+
+
+        //bool inbd = AngleInBounds(desiredAngle, displacement, joint.limits, border);
+        //if (gameObject.name.Contains("Leg"))
+        //    Debug.Log(gameObject.name + " : " + desiredAngle.ToString() + " / " + angle.ToString());
         joint.useMotor = true;
         motor.motorSpeed = pid.Update(desiredAngle, angle, Time.deltaTime, speedLimit);
         motor.maxMotorTorque = 10 * strengthMod;
@@ -226,6 +254,7 @@ public class LimbController : MonoBehaviour
         {
             direction++;
             tick++;
+
         }
         if (Input.GetKey("a"))
         {
@@ -235,11 +264,11 @@ public class LimbController : MonoBehaviour
         }
 
         //do foot stuff
-        if (tick+offset < wavelength)
+        if (tick+ offset % (wavelength*2) < wavelength)
         {
             direction *= 1;
         }
-        else if (tick+offset < 2*wavelength)
+        else if (tick+ offset % (wavelength*2) < 2*wavelength)
         {
             direction *= -1;
         }
@@ -247,31 +276,32 @@ public class LimbController : MonoBehaviour
         {
             rigidBody.sharedMaterial.friction = 1f;
             rigidBody.sharedMaterial.bounciness = -1f;
-            tick = -(int)offset;
+            tick = -(int)offset % (wavelength*2);
             direction = 0;
         }
 
-        rigidBody.sharedMaterial.friction = 10f;
+        rigidBody.sharedMaterial.friction = 1f;
         rigidBody.sharedMaterial.bounciness = -3000f;
 
-        if ((direction > 0 && Input.GetKey("a")) || (direction < 0 && Input.GetKey("d")))
+        if ((rigidBody.velocity.x > 0 && Input.GetKey("a")) || (rigidBody.velocity.x < 0 && Input.GetKey("d")))
         {
-            rigidBody.sharedMaterial.friction = 1000f;
-            rigidBody.sharedMaterial.bounciness = -3000f;
+            rigidBody.sharedMaterial.friction = 1f;
+            if(grounded)
+                rigidBody.AddForce(new Vector2(-rigidBody.velocity.x * rigidBody.mass * rigidBody.sharedMaterial.friction * 100f, 0f));
+            rigidBody.sharedMaterial.bounciness = -1f;
         }
-        else
+        else if(direction != 0)
         {
             rigidBody.sharedMaterial.friction = 0.05f;
             rigidBody.sharedMaterial.bounciness = 0.2f;
         }
 
-        if(direction != 0)
+        if (direction != 0)
             tick++;
 
         float pos = gameObject.transform.position.x;
-        float despos = Time.deltaTime * speedMod * 5;
-        despos *= direction;
-        rigidBody.AddForce(new Vector2(direction * strengthMod/10 * pid.Update(pos+despos, pos, Time.deltaTime, speedLimit), 0f));
+        float despos = Time.deltaTime * speedMod * 5*direction;
+        rigidBody.AddForce(new Vector2(strengthMod/20 * pid.Update(pos+despos, pos, Time.deltaTime, speedLimit), 0f));
     }
 
     public void GravityAlign()
@@ -287,6 +317,7 @@ public class LimbController : MonoBehaviour
         Vector3 dir = (loc - (gameObject.transform.position + gameObject.transform.rotation * joint.connectedAnchor));
         float displacement = parent.transform.rotation.eulerAngles.z + frontRotation;
         float desiredAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        desiredAngle = Utilities.RealRotationZFloat(gameObject, desiredAngle);
         float angle = gameObject.transform.rotation.eulerAngles.z + frontRotation;
         bool inbd = AngleInBounds(desiredAngle, displacement, joint.limits, border);
         if (dir.sqrMagnitude < 4)
@@ -304,6 +335,24 @@ public class LimbController : MonoBehaviour
         }
         motor.maxMotorTorque = 10 * strengthMod;
         joint.motor = motor;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("Ouch!");
+        if (Type == "Foot") // && col.otherRigidbody.gameObject.layer == 8
+        {
+            grounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        //Debug.Log("Ouch!");
+        if (Type == "Foot") // && col.otherRigidbody.gameObject.layer == 8
+        {
+            grounded = false;
+        }
     }
 
     public static bool AngleInBounds(float angle, float displacement, JointAngleLimits2D limits, float border)
