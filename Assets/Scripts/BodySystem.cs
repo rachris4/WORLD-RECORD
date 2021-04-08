@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using Unity.Collections;
 
 public class LimbUnity : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class BodyPart : DefinitionBase
     public Vector2Int Max;
     public Vector2Int Min;
 
-    private HashSet<MeshTriangle> alienTris = new HashSet<MeshTriangle>();
+    private List<MeshTriangle> alienTris = new List<MeshTriangle>();
     private HashSet<HashSet<GameObject>> alienTrisMesh = new HashSet<HashSet<GameObject>>();
 
     public Vector2 jointLocation;
@@ -282,7 +283,7 @@ public class BodyPart : DefinitionBase
         }
 
         MeshTriangle tri = new MeshTriangle();
-        tri.Triangles = new GameObject[3];
+        tri.Hexes = new Transform[3];
 
         for (int i = 0; i < AlienSquares.Count; i++)
         {
@@ -293,11 +294,10 @@ public class BodyPart : DefinitionBase
 
             newBlock.TryGetComponent<Rigidbody2D>(out newRigid);
 
-            int springCount = 0;
-
             Vector3[] hexNeighbours = Utilities.HexNeighbours(square.HexVector.ToVector3());
+            int help = 0;
 
-            foreach (Vector3 hexPt in Utilities.HexNeighbours(square.HexVector.ToVector3()))
+            foreach (Vector3 hexPt in hexNeighbours)
             {
 
                 GameObject neighbourBlock;
@@ -307,172 +307,67 @@ public class BodyPart : DefinitionBase
                 HexDict.TryGetValue(hexPt, out neighbourBlock);
                 if (neighbourBlock == null)
                 {
-                    //Debug.Log("The hexagonal coordinate " + hexPt.ToString() + " did not exist in the dictionary.");
+                    
                     continue;
 
                 }
 
                 Block doubledef = AlienSquares[AlienBlocks.IndexOf(neighbourBlock)];
 
+                MakeSprings(newBlock, neighbourBlock, square, doubledef);
+
+
                 tri = new MeshTriangle();
-                tri.Triangles = new GameObject[3];
+                tri.Hexes = new Transform[3];
 
                 HashSet<GameObject> triMesh = new HashSet<GameObject>();
 
+                Vector3 doubleHex = hexNeighbours[(help + 1) % 6];
+                help++;
 
-                foreach (Vector3 doubleHex in Utilities.HexNeighbours(hexPt))
+
+                GameObject doubleNeighbor;
+                HexDict.TryGetValue(doubleHex, out doubleNeighbor);
+                if (doubleNeighbor == null)
                 {
-                    GameObject doubleNeighbor;
-                    HexDict.TryGetValue(doubleHex, out doubleNeighbor);
-                    if (doubleNeighbor == null || doubleNeighbor == newBlock)
-                    {
-                        continue;
-                    }
-
-                    bool ogneighbor = false;
-
-                    foreach (Vector3 tripleHex in Utilities.HexNeighbours(doubleHex))
-                    {
-                        if (tripleHex == square.HexVector.ToVector3())
-                        {
-                            ogneighbor = true;
-                            break;
-                        }
-                    }
-
-                    if (!ogneighbor)
-                        continue;
-
-                    triMesh.Clear();
-                    triMesh.Add(newBlock);
-                    triMesh.Add(neighbourBlock);
-                    triMesh.Add(doubleNeighbor);
-
-                    bool skip = false;
-
-                    foreach (HashSet<GameObject> hash in alienTrisMesh)
-                    {
-                        if (hash.IsSupersetOf(triMesh))
-                        {
-                            skip = true;
-                            break;
-                        }
-                    }
-
-                    if (!skip)
-                        alienTrisMesh.Add(triMesh);
-
-
-                    /*
-                    if (alienTris.Contains(tri))
-                        continue;
-                    else
-                        alienTris.Add(tri);*/
+                    continue;
                 }
 
+                triMesh.Clear();
+                triMesh.Add(newBlock);
+                triMesh.Add(neighbourBlock);
+                triMesh.Add(doubleNeighbor);
 
-                //Debug.Log("oooo!!");
+                bool skip = false;
 
-
-                Rigidbody2D otherRigid = neighbourBlock.GetComponent<Rigidbody2D>();
-
-                if (square.AlienProperties != null && newRigid != null && doubledef.AlienProperties != null)
+                foreach (HashSet<GameObject> hash in alienTrisMesh)
                 {
-                    bool makeSpring = true;
-
-
-                    foreach (var spring in neighbourBlock.GetComponents<SpringJoint2D>())
+                    if (hash.IsSupersetOf(triMesh))
                     {
-                        if (spring.connectedBody == newRigid)
-                        {
-                            makeSpring = false;
-                            //Debug.Log("the pairing " + newBlock.name + " / " + neighbourBlock.name + " failed because of the existing pair: " + neighbourBlock.name + " / " + spring.connectedBody.gameObject.name);
-                            break;
-                        }
+                        skip = true;
+                        break;
                     }
-
-                    if (!makeSpring)
-                        continue;
-
-                    if (square.AlienProperties.TypeID == "Bone" && "Bone" == doubledef.AlienProperties.TypeID)
-                    {
-                        var fix = newBlock.AddComponent<FixedJoint2D>();
-                        fix.connectedBody = otherRigid;
-                        fix.breakForce = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
-                        continue;
-                    }
-                    var newspring = newBlock.AddComponent<SpringJoint2D>();
-                    newspring.autoConfigureDistance = false;
-                    newspring.connectedBody = otherRigid;
-                    newspring.distance = 1.05f;
-                    newspring.dampingRatio = (square.AlienProperties.SpringDamping + doubledef.AlienProperties.SpringDamping) / 2f;
-                    newspring.frequency = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) / 2f;
-                    newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
-
-                    /*
-                    var newslide = newBlock.AddComponent<SliderJoint2D>();
-                    newslide.connectedBody = otherRigid;
-                    newslide.useLimits = true;
-                    newslide.limits = new JointTranslationLimits2D { max = 90f, min = 1f };
-                    newslide.breakForce = newspring.breakForce / 2;*/
-                    //newslide.autoConfigureAngle = false;
-                    //newslide.angle = 0f;
-
-                }
-                else if (square.AlienProperties != null)
-                {
-
-
-                    AlienProperties check = new AlienProperties();
-                    Vector2 loc = Vector2.zero;
-
-
-                    check = square.AlienProperties;
-                    loc = doubledef.blockLocation.ToVector2();
-
-
-                    if (square.AlienProperties?.TypeID == "Bone")
-                    {
-                        var fix = newBlock.AddComponent<FixedJoint2D>();
-                        fix.connectedBody = Utilities.FindRigidbody(neighbourBlock);
-                        fix.connectedAnchor = loc;
-                        fix.breakForce = (square.AlienProperties.SpringConstant + notAlienSpringConstant) * (square.AlienProperties.Plasticity + notAlienDampening) / 2f;
-                        continue;
-                    }
-
-                    var newspring = newBlock.AddComponent<SpringJoint2D>();
-                    newspring.autoConfigureDistance = false;
-                    newspring.connectedBody = Utilities.FindRigidbody(neighbourBlock);
-                    newspring.connectedAnchor = loc;
-                    newspring.distance = 1f;
-                    newspring.dampingRatio = (square.AlienProperties.SpringDamping + notAlienDampening) / 2f;
-                    newspring.frequency = (square.AlienProperties.SpringConstant + notAlienSpringConstant) / 2f;
-                    newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + notAlienSpringConstant) / 2f;
-
                 }
 
+                if (!skip)
+                    alienTrisMesh.Add(triMesh);
 
-                //Debug.Log("AlienNeuighbours!!");
 
-
-                springCount++;
 
             }
 
         }
 
-        
-
         foreach (HashSet<GameObject> hash in alienTrisMesh)
         {
             int jj = 0;
             tri = new MeshTriangle();
-            tri.Triangles = new GameObject[3];
+            tri.Hexes = new Transform[3];
 
             foreach (GameObject obj in hash)
             {
 
-                tri.Triangles[jj] = obj;
+                tri.Hexes[jj] = obj.transform;
                 jj++;
             }
             alienTris.Add(tri);
@@ -486,7 +381,88 @@ public class BodyPart : DefinitionBase
             //Object.Destroy(limb.GetComponent<SpriteRenderer>());
             var filter = mesh.AddComponent<MeshFilter>();
             var render = mesh.AddComponent<MeshRenderer>();
-            flesh.alienTris = alienTris;
+            flesh.InitializeTransforms(alienTris);
+        }
+    }
+
+    public void MakeSprings(GameObject newBlock, GameObject neighbourBlock, Block square, Block doubledef)
+    {
+        Rigidbody2D otherRigid = neighbourBlock.GetComponent<Rigidbody2D>();
+        Rigidbody2D newRigid = newBlock.GetComponent<Rigidbody2D>();
+
+        if (square.AlienProperties != null && newRigid != null && doubledef.AlienProperties != null)
+        {
+            bool makeSpring = true;
+
+
+            foreach (var spring in neighbourBlock.GetComponents<SpringJoint2D>())
+            {
+                if (spring.connectedBody == newRigid)
+                {
+                    makeSpring = false;
+                    //Debug.Log("the pairing " + newBlock.name + " / " + neighbourBlock.name + " failed because of the existing pair: " + neighbourBlock.name + " / " + spring.connectedBody.gameObject.name);
+                    break;
+                }
+            }
+
+            if (!makeSpring)
+                return;
+
+            if (square.AlienProperties.TypeID == "Bone" && "Bone" == doubledef.AlienProperties.TypeID)
+            {
+                var fix = newBlock.AddComponent<FixedJoint2D>();
+                fix.connectedBody = otherRigid;
+                fix.breakForce = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
+                return;
+            }
+            var newspring = newBlock.AddComponent<SpringJoint2D>();
+            newspring.autoConfigureDistance = false;
+            newspring.connectedBody = otherRigid;
+            newspring.distance = 1.05f;
+            newspring.dampingRatio = (square.AlienProperties.SpringDamping + doubledef.AlienProperties.SpringDamping) / 2f;
+            newspring.frequency = (square.AlienProperties.SpringConstant + doubledef.AlienProperties.SpringConstant) / 2f;
+            newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + doubledef.AlienProperties.Plasticity) / 2f;
+
+            /*
+            var newslide = newBlock.AddComponent<SliderJoint2D>();
+            newslide.connectedBody = otherRigid;
+            newslide.useLimits = true;
+            newslide.limits = new JointTranslationLimits2D { max = 90f, min = 1f };
+            newslide.breakForce = newspring.breakForce / 2;*/
+            //newslide.autoConfigureAngle = false;
+            //newslide.angle = 0f;
+
+        }
+        else if (square.AlienProperties != null)
+        {
+
+
+            AlienProperties check = new AlienProperties();
+            Vector2 loc = Vector2.zero;
+
+
+            check = square.AlienProperties;
+            loc = doubledef.blockLocation.ToVector2();
+
+
+            if (square.AlienProperties?.TypeID == "Bone")
+            {
+                var fix = newBlock.AddComponent<FixedJoint2D>();
+                fix.connectedBody = Utilities.FindRigidbody(neighbourBlock);
+                fix.connectedAnchor = loc;
+                fix.breakForce = (square.AlienProperties.SpringConstant + notAlienSpringConstant) * (square.AlienProperties.Plasticity + notAlienDampening) / 2f;
+                return;
+            }
+
+            var newspring = newBlock.AddComponent<SpringJoint2D>();
+            newspring.autoConfigureDistance = false;
+            newspring.connectedBody = Utilities.FindRigidbody(neighbourBlock);
+            newspring.connectedAnchor = loc;
+            newspring.distance = 1f;
+            newspring.dampingRatio = (square.AlienProperties.SpringDamping + notAlienDampening) / 2f;
+            newspring.frequency = (square.AlienProperties.SpringConstant + notAlienSpringConstant) / 2f;
+            newspring.breakForce = newspring.frequency * (square.AlienProperties.Plasticity + notAlienSpringConstant) / 2f;
+
         }
     }
 
@@ -516,7 +492,7 @@ public class BodyPart : DefinitionBase
 
 public struct MeshTriangle
 {
-    public GameObject[] Triangles;
+    public Transform[] Hexes;
 }
 
 public class LimbControllerDefinition

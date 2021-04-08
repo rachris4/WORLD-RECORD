@@ -293,6 +293,7 @@ public class Block : BlockDefinition
         PolygonCollider2D shape;
         switch (otherSquare.collider)
         {
+
             case "box":
                 newBlock.AddComponent<BoxCollider2D>();
                 break;
@@ -311,8 +312,11 @@ public class Block : BlockDefinition
                 shape.pathCount = 1;
                 shape.points = new Vector2[] { new Vector2(-0.5f, 0f), new Vector2(-0.5f, -0.5f), new Vector2(0.5f, -0.5f) };
                 break;
+            case "circle":
+                newBlock.AddComponent<CircleCollider2D>();
+                break;
             default:
-                newBlock.AddComponent<BoxCollider2D>();
+                newBlock.AddComponent<CircleCollider2D>();
                 break;
 
         }

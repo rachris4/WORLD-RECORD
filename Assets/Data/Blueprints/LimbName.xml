@@ -28,10 +28,10 @@
             <positionDampening>0</positionDampening>
           </JointProperties>
           <entityID>0</entityID>
-          <blockLocation x="-1" y="1.73205078" />
+          <blockLocation x="2" y="1.73205078" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
-          <HexVector x="0" y="2" z="-2" />
+          <HexVector x="3" y="-1" z="-2" />
           <HexBlock>true</HexBlock>
           <refIndex>0</refIndex>
         </Block>
@@ -51,79 +51,10 @@
             <positionDampening>0</positionDampening>
           </JointProperties>
           <entityID>0</entityID>
-          <blockLocation x="0" y="1.73205078" />
+          <blockLocation x="1.5" y="0.8660254" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
-          <HexVector x="1" y="1" z="-2" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="-0.5" y="2.598076" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="1" y="2" z="-3" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="0" y="3.46410155" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="2" y="2" z="-4" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="0.5" y="4.330127" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="3" y="2" z="-5" />
+          <HexVector x="2" y="-1" z="-1" />
           <HexBlock>true</HexBlock>
           <refIndex>0</refIndex>
         </Block>
@@ -166,102 +97,10 @@
             <positionDampening>0</positionDampening>
           </JointProperties>
           <entityID>0</entityID>
-          <blockLocation x="2" y="1.73205078" />
+          <blockLocation x="1.5" y="2.598076" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
-          <HexVector x="3" y="-1" z="-2" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Bone">
-          <SubTypeID>bone</SubTypeID>
-          <DisplayName>bone</DisplayName>
-          <pathSprite>Sprites/bone</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="3" y="1.73205078" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="4" y="-2" z="-2" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Bone">
-          <SubTypeID>bone</SubTypeID>
-          <DisplayName>bone</DisplayName>
-          <pathSprite>Sprites/bone</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="1" y="5.196152" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="4" y="2" z="-6" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="1.5" y="4.330127" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="4" y="1" z="-5" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="2" y="3.46410155" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="4" y="0" z="-4" />
+          <HexVector x="3" y="0" z="-3" />
           <HexBlock>true</HexBlock>
           <refIndex>0</refIndex>
         </Block>
@@ -304,10 +143,10 @@
             <positionDampening>0</positionDampening>
           </JointProperties>
           <entityID>0</entityID>
-          <blockLocation x="1.5" y="2.598076" />
+          <blockLocation x="3" y="1.73205078" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
-          <HexVector x="3" y="0" z="-3" />
+          <HexVector x="4" y="-2" z="-2" />
           <HexBlock>true</HexBlock>
           <refIndex>0</refIndex>
         </Block>
@@ -327,33 +166,10 @@
             <positionDampening>0</positionDampening>
           </JointProperties>
           <entityID>0</entityID>
-          <blockLocation x="0.5" y="2.598076" />
+          <blockLocation x="2.5" y="0.8660254" />
           <rotation>0</rotation>
           <transformScale x="1" y="1" z="1" />
-          <HexVector x="2" y="1" z="-3" />
-          <HexBlock>true</HexBlock>
-          <refIndex>0</refIndex>
-        </Block>
-        <Block TypeID="Armor">
-          <SubTypeID>flesh</SubTypeID>
-          <DisplayName>flesh</DisplayName>
-          <pathSprite>Sprites/scale</pathSprite>
-          <isSolid>false</isSolid>
-          <SpriteOffset x="0" y="0" />
-          <weapon />
-          <Mass>0</Mass>
-          <JointProperties>
-            <Mirror>false</Mirror>
-            <rotationMax>0</rotationMax>
-            <rotationMin>0</rotationMin>
-            <angularDampening>0</angularDampening>
-            <positionDampening>0</positionDampening>
-          </JointProperties>
-          <entityID>0</entityID>
-          <blockLocation x="1" y="3.46410155" />
-          <rotation>0</rotation>
-          <transformScale x="1" y="1" z="1" />
-          <HexVector x="3" y="1" z="-4" />
+          <HexVector x="3" y="-2" z="-1" />
           <HexBlock>true</HexBlock>
           <refIndex>0</refIndex>
         </Block>

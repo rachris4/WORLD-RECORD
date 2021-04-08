@@ -6,9 +6,9 @@ public class MeleePiercer : MonoBehaviour
 {
 
     [SerializeField]
-    public float maxDamage = 500f;
+    public float maxDamage = 10000f;
     [SerializeField]
-    public int maxHits = 2;
+    public int maxHits = 5;
     [SerializeField]
     public float forcePerCut = 20f;
 

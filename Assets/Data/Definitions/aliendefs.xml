@@ -6,7 +6,7 @@
       <DisplayName>bone</DisplayName>
       <pathSprite>Sprites/bone</pathSprite>
       <isSolid>true</isSolid>
-      <collider>box</collider>
+      <collider>circle</collider>
       <DestructionProperties Health="300" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
       <!--
       <AlienProperties TypeID ="Bone">
@@ -23,7 +23,7 @@
       <DisplayName>flesh</DisplayName>
       <pathSprite>Sprites/scale</pathSprite>
       <isSolid>true</isSolid>
-      <collider>box</collider>
+      <collider>circle</collider>
       <DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <AlienProperties TypeID ="Flesh">
         <Mass>0.2</Mass>
