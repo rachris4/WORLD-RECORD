@@ -7,24 +7,39 @@
       <pathSprite>Sprites/block</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="1000" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Armor</BlockCategory>
+		<DestructionProperties Health="1000" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="FixedThruster">
       <SubTypeID>thruster</SubTypeID>
       <DisplayName>Fixed Thruster</DisplayName>
       <pathSprite>Sprites/thruster</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Mobility</BlockCategory>
+		<DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
+    <BlockDefinition TypeID="Core">
+      <SubTypeID>brainblock</SubTypeID>
+      <DisplayName>brainblock</DisplayName>
+      <pathSprite>Sprites/brainblock</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+		<BlockCategory>Important</BlockCategory>
+		<DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="3" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
+	  
     <BlockDefinition TypeID="RotatingThruster">
       <SubTypeID>thrusterRotator</SubTypeID>
       <DisplayName>Rotating Thruster</DisplayName>
       <pathSprite>Sprites/jointball</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
-      <TurretProperties>
+      <DestructionProperties Health="300" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Mobility</BlockCategory>
+		<TurretProperties>
         <TurretPathSprite>Sprites/turretbarrel</TurretPathSprite>
         <AI>false</AI>
         <AIRange>0</AIRange>
@@ -32,30 +47,37 @@
         <TurretOffset x="0" y="0" />
       </TurretProperties>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="Armor">
       <SubTypeID>armor_triangle</SubTypeID>
       <DisplayName>Corner Armor</DisplayName>
       <pathSprite>Sprites/triangle</pathSprite>
       <isSolid>true</isSolid>
       <collider>triangle</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Armor</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="Armor">
       <SubTypeID>armor_slope_top</SubTypeID>
       <DisplayName>2x1 Slope Top</DisplayName>
       <pathSprite>Sprites/toptwoslope</pathSprite>
       <isSolid>true</isSolid>
       <collider>toptwoslope</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Armor</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="Armor">
       <SubTypeID>armor_slope_bot</SubTypeID>
       <DisplayName>2x1 Slope Bottom</DisplayName>
       <pathSprite>Sprites/bottwoslope</pathSprite>
       <isSolid>true</isSolid>
       <collider>bottwoslope</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Armor</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="JointStator">
       <SubTypeID>simple_socket</SubTypeID>
       <DisplayName>socket</DisplayName>
@@ -63,11 +85,13 @@
       <flippedPathSprite>Sprites/jointball</flippedPathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Important</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <JointProperties TypeID ="Stator">
         <JointPathSprite>Sprites/jointbearing</JointPathSprite>
       </JointProperties>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="JointRotor">
       <SubTypeID>simple_ball</SubTypeID>
       <DisplayName>socket</DisplayName>
@@ -75,15 +99,19 @@
       <flippedPathSprite>Sprites/jointsocket</flippedPathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Important</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="GrappleGun">
       <SubTypeID>grapple</SubTypeID>
       <DisplayName>grapple</DisplayName>
       <pathSprite>Sprites/grapplelauncher</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
-      <DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+		<BlockCategory>Mobility</BlockCategory>
+		<DestructionProperties Health="100" Threshold ="10" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
     </BlockDefinition>
+	  
   </BlockDefinitions>
 </Definitions>

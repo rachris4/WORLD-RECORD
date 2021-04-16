@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BlockDefinitions />
+  <SubTypeIdList />
+  <ProjectileDefinitions />
+  <projectileSubTypeList />
+  <ProjectileWeaponDefinitions />
+  <projectileWeaponSubTypeList />
+  <EnergyWeaponDefinitions />
+  <energyWeaponSubtypeIDList />
+  <Blueprints>
+    <Blueprint TypeID="Robot">
+      <SubTypeID>NewLimb_01</SubTypeID>
+      <Blocks />
+      <Controller>
+        <StrengthMod>0</StrengthMod>
+        <SpeedMod>0</SpeedMod>
+        <P>0</P>
+        <I>0</I>
+        <D>0</D>
+        <Rotation>0</Rotation>
+        <Border>0</Border>
+        <SpeedLimit>0</SpeedLimit>
+        <Wavelength>0</Wavelength>
+        <Offset>0</Offset>
+      </Controller>
+      <VisualLayer>0</VisualLayer>
+      <Flippable>true</Flippable>
+      <Max>
+        <x>0</x>
+        <y>0</y>
+      </Max>
+      <Min>
+        <x>0</x>
+        <y>0</y>
+      </Min>
+      <jointLocation>
+        <x>0</x>
+        <y>0</y>
+      </jointLocation>
+    </Blueprint>
+  </Blueprints>
+  <blueprintSubTypeIdList />
+</Definitions>

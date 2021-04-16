@@ -7,16 +7,34 @@
       <pathSprite>Sprites/gun</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
+		<BlockCategory>FixedGun</BlockCategory>
+		<DestructionProperties Health="500" Threshold ="5" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <weapon>basic_gun</weapon>
     </BlockDefinition>
+
+    <BlockDefinition TypeID="FixedWeaponBlock">
+      <SubTypeID>basic_cannon</SubTypeID>
+      <DisplayName>cannon</DisplayName>
+      <pathSprite>Sprites/cannon</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+		<BlockCategory>FixedGun</BlockCategory>
+		<DestructionProperties Health="500" Threshold ="5" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="1" y="0"/>
+      <weapon>basic_cannon</weapon>
+    </BlockDefinition>
+    
     <BlockDefinition TypeID="FixedWeaponBlock">
       <SubTypeID>basic_laser</SubTypeID>
       <DisplayName>Simple Laser</DisplayName>
       <pathSprite>Sprites/laser</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
+		<BlockCategory>FixedGun</BlockCategory>
+		<DestructionProperties Health="500" Threshold ="5" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <weapon>basic_laser</weapon>
     </BlockDefinition>
+	  
     <BlockDefinition TypeID="TurretBlock">
       <SubTypeID>basic_turret</SubTypeID>
       <DisplayName>Simple Turret</DisplayName>
@@ -24,6 +42,8 @@
       <isSolid>true</isSolid>
       <collider>box</collider>
       <weapon>basic_gun</weapon>
+		<BlockCategory>Turret</BlockCategory>
+		<DestructionProperties Health="500" Threshold ="5" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <TurretProperties>
         <TurretPathSprite>Sprites/turretbarrel</TurretPathSprite>
         <AI>true</AI>
@@ -39,6 +59,28 @@
       <isSolid>true</isSolid>
       <collider>box</collider>
       <SpriteOffset x="-0.5" y="0"/>
+		<BlockCategory>Melee</BlockCategory>
+		<DestructionProperties Health="1000" Threshold ="50" BreakPoints ="1" Hardness ="3" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <MeleeProperties Type ="blade">
+        <TotalDamage>100</TotalDamage>
+        <TotalHits>2</TotalHits>
+        <ForcePerImpale>20</ForcePerImpale>
+      </MeleeProperties>
+    </BlockDefinition>
+    <BlockDefinition TypeID="MeleePiercer">
+      <SubTypeID>longSpike</SubTypeID>
+      <DisplayName>Spike 5x1</DisplayName>
+      <pathSprite>Sprites/spike5x1</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <SpriteOffset x="-0.5" y="0"/>
+		<BlockCategory>Melee</BlockCategory>
+		<DestructionProperties Health="1000" Threshold ="50" BreakPoints ="1" Hardness ="4" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <MeleeProperties Type ="spike">
+        <TotalDamage>3000</TotalDamage>
+        <TotalHits>15</TotalHits>
+        <ForcePerImpale>50</ForcePerImpale>
+      </MeleeProperties>
     </BlockDefinition>
   </BlockDefinitions>
 </Definitions>

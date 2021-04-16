@@ -6,8 +6,9 @@
       <DisplayName>bone</DisplayName>
       <pathSprite>Sprites/bone</pathSprite>
       <isSolid>true</isSolid>
-      <collider>circle</collider>
-      <DestructionProperties Health="300" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+      <collider>box</collider>
+	  <BlockCategory>Armor</BlockCategory>
+      <DestructionProperties Health="500" Threshold ="100" BreakPoints ="1" Hardness ="3" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
       <!--
       <AlienProperties TypeID ="Bone">
         <Mass>2</Mass>
@@ -18,21 +19,99 @@
         <Plasticity>100</Plasticity>
       </AlienProperties>-->
     </BlockDefinition>
+
+    <BlockDefinition TypeID="Core">
+      <SubTypeID>brainhex</SubTypeID>
+      <DisplayName>brainhex</DisplayName>
+      <pathSprite>Sprites/brainhex</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="3" ShatterType ="Triangle" FadeOut="100" Fuse ="100"/>
+    </BlockDefinition>
+
     <BlockDefinition TypeID="Armor">
       <SubTypeID>flesh</SubTypeID>
       <DisplayName>flesh</DisplayName>
-      <pathSprite>Sprites/scale</pathSprite>
-      <isSolid>true</isSolid>
-      <collider>circle</collider>
-      <DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="30" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <pathSprite>Sprites/flesh</pathSprite>
+		<BlockCategory>Armor</BlockCategory>
+		<isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="1000" Threshold ="30" BreakPoints ="1" Hardness ="1" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
       <AlienProperties TypeID ="Flesh">
         <Mass>0.2</Mass>
-        <MaterialBounciness>0.5</MaterialBounciness>
+        <MaterialBounciness>0.2</MaterialBounciness>
         <MaterialFriction>0.5</MaterialFriction>
-        <SpringDamping>10</SpringDamping>
-        <SpringConstant>20</SpringConstant>
+        <SpringDamping>100</SpringDamping>
+        <SpringConstant>100</SpringConstant>
         <Plasticity>200</Plasticity>
       </AlienProperties>
     </BlockDefinition>
+
+    <BlockDefinition TypeID="MeleePiercer">
+      <SubTypeID>scraggleTooth</SubTypeID>
+      <DisplayName>tooth</DisplayName>
+      <pathSprite>Sprites/toothhex</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+		<BlockCategory>Melee</BlockCategory>
+		<DestructionProperties Health="3000" Threshold ="30" BreakPoints ="1" Hardness ="3" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="0" y="0"/>
+      <AlienProperties TypeID ="Flesh">
+        <Mass>0.2</Mass>
+        <MaterialBounciness>0.1</MaterialBounciness>
+        <MaterialFriction>0.5</MaterialFriction>
+        <SpringDamping>300</SpringDamping>
+        <SpringConstant>300</SpringConstant>
+        <Plasticity>200</Plasticity>
+      </AlienProperties>
+      <MeleeProperties Type ="spike">
+        <TotalDamage>3000</TotalDamage>
+        <TotalHits>7</TotalHits>
+        <ForcePerImpale>50</ForcePerImpale>
+      </MeleeProperties>
+    </BlockDefinition>
+
+    <BlockDefinition TypeID="MeleePiercer">
+      <SubTypeID>mucus</SubTypeID>
+      <DisplayName>mucus</DisplayName>
+      <pathSprite>Sprites/mucushex</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+		<BlockCategory>Melee</BlockCategory>
+		<DestructionProperties Health="3000" Threshold ="30" BreakPoints ="1" Hardness ="0" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <SpriteOffset x="0" y="0"/>
+      <AlienProperties TypeID ="Flesh">
+        <Mass>0.2</Mass>
+        <MaterialBounciness>-1</MaterialBounciness>
+        <MaterialFriction>1</MaterialFriction>
+        <SpringDamping>200</SpringDamping>
+        <SpringConstant>300</SpringConstant>
+        <Plasticity>100</Plasticity>
+      </AlienProperties>
+      <MeleeProperties Type ="blade">
+        <TotalDamage>500</TotalDamage>
+        <TotalHits>10</TotalHits>
+        <ForcePerImpale>50</ForcePerImpale>
+      </MeleeProperties>
+    </BlockDefinition>
+    
+    <BlockDefinition TypeID="Armor">
+      <SubTypeID>scale</SubTypeID>
+      <DisplayName>scale</DisplayName>
+      <pathSprite>Sprites/scale</pathSprite>
+		<BlockCategory>Armor</BlockCategory>
+		<isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="750" Threshold ="30" BreakPoints ="1" Hardness ="2" ShatterType ="Voronoi" FadeOut="100" Fuse ="100"/>
+      <AlienProperties TypeID ="Flesh">
+        <Mass>0.2</Mass>
+        <MaterialBounciness>0.1</MaterialBounciness>
+        <MaterialFriction>0.8</MaterialFriction>
+        <SpringDamping>200</SpringDamping>
+        <SpringConstant>300</SpringConstant>
+        <Plasticity>100</Plasticity>
+      </AlienProperties>
+    </BlockDefinition>
+    
   </BlockDefinitions>
 </Definitions>

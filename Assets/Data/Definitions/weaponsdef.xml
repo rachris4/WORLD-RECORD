@@ -4,17 +4,32 @@
     <ProjectileWeaponDefinition TypeID="blapperino">
       <SubTypeID>basic_gun</SubTypeID>
       <DisplayName>Simple Gun</DisplayName>
-      <Projectile>mouseguide</Projectile>
+      <Projectile>basic_ammo</Projectile>
       <RateOfFire>1000</RateOfFire>
       <Reload>0</Reload>
       <ShotsInBurst>25</ShotsInBurst>
       <ProjectileCount>1</ProjectileCount>
       <Deviation>10</Deviation>
-      <DamageMult>1</DamageMult>
+      <DamageMult>10</DamageMult>
       <RangeMult>1</RangeMult>
       <SpeedMult>1</SpeedMult>
       <BarrelDisplacement x="0" y="0" />
       <KnockBackForce>300</KnockBackForce>
+    </ProjectileWeaponDefinition>
+    <ProjectileWeaponDefinition TypeID="blapperino">
+      <SubTypeID>basic_cannon</SubTypeID>
+      <DisplayName>Simple Cannon</DisplayName>
+      <Projectile>basic_cannonball</Projectile>
+      <RateOfFire>10</RateOfFire>
+      <Reload>0</Reload>
+      <ShotsInBurst>1</ShotsInBurst>
+      <ProjectileCount>1</ProjectileCount>
+      <Deviation>1</Deviation>
+      <DamageMult>1</DamageMult>
+      <RangeMult>1</RangeMult>
+      <SpeedMult>1</SpeedMult>
+      <BarrelDisplacement x="0" y="0" />
+      <KnockBackForce>50000</KnockBackForce>
     </ProjectileWeaponDefinition>
   </ProjectileWeaponDefinitions>
   <EnergyWeaponDefinitions>

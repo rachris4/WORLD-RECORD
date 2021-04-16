@@ -4,17 +4,35 @@
     <ProjectileDefinition TypeID="Ammo">
       <SubTypeID>basic_ammo</SubTypeID>
       <DisplayName>basic ammo</DisplayName>
-      <pathSprite>Sprites/bullet</pathSprite>
+      <pathSprite>Sprites/bullet2</pathSprite>
       <isSolid>true</isSolid>
       <collider>box</collider>
       <DestructionProperties Health="1" Threshold ="4" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="10" Fuse ="10"/>
-      <Velocity x="1000" y="0" />
+      <Velocity x="200" y="0" />
       <Acceleration x="0" y="0" />
       <Fuse>1000</Fuse>
       <LinearDrag>0</LinearDrag>
       <AngularDrag>0</AngularDrag>
       <GravityScale>1</GravityScale>
       <RotationSpeed>10</RotationSpeed>
+      <Damage>10</Damage>
+    </ProjectileDefinition>
+    <ProjectileDefinition TypeID="Ammo">
+      <SubTypeID>basic_cannonball</SubTypeID>
+      <DisplayName>basic_cannonball</DisplayName>
+      <pathSprite>Sprites/bullet</pathSprite>
+      <isSolid>true</isSolid>
+      <collider>box</collider>
+      <DestructionProperties Health="1" Threshold ="4" BreakPoints ="1" Hardness ="30" ShatterType ="Triangle" FadeOut="10" Fuse ="10"/>
+      <Velocity x="200" y="0" />
+      <Acceleration x="0" y="0" />
+      <Fuse>1000</Fuse>
+      <LinearDrag>0</LinearDrag>
+      <AngularDrag>0</AngularDrag>
+      <GravityScale>1</GravityScale>
+      <RotationSpeed>10</RotationSpeed>
+      <Damage>5000</Damage>
+      <Impulse>5000</Impulse>
     </ProjectileDefinition>
     <ProjectileDefinition TypeID="Ammo">
       <SubTypeID>mouseguide</SubTypeID>

@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BlockDefinitions />
+  <SubTypeIdList />
+  <ProjectileDefinitions />
+  <projectileSubTypeList />
+  <ProjectileWeaponDefinitions />
+  <projectileWeaponSubTypeList />
+  <EnergyWeaponDefinitions />
+  <energyWeaponSubtypeIDList />
+  <Blueprints>
+    <Blueprint TypeID="Building">
+      <SubTypeID>HighRise3Floors</SubTypeID>
+      <Blocks>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="8" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_floor_11x2</SubTypeID>
+          <DisplayName>Floor 11x2</DisplayName>
+          <pathSprite>Sprites/floor</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_floor_11x2</SubTypeID>
+          <DisplayName>Floor 11x2</DisplayName>
+          <pathSprite>Sprites/floor</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="6" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_floor_11x2</SubTypeID>
+          <DisplayName>Floor 11x2</DisplayName>
+          <pathSprite>Sprites/floor</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="10" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_floor_11x2</SubTypeID>
+          <DisplayName>Floor 11x2</DisplayName>
+          <pathSprite>Sprites/floor</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="14" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_floor_11x2</SubTypeID>
+          <DisplayName>Floor 11x2</DisplayName>
+          <pathSprite>Sprites/floor</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="18" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="8" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="12" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="0" y="16" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="8" y="16" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="8" y="12" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="8" y="8" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="8" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="8" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="12" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_wall_1x3</SubTypeID>
+          <DisplayName>Wall 1x3</DisplayName>
+          <pathSprite>Sprites/wall</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="16" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="16" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="6" y="16" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="12" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="8" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="6" y="8" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="6" y="12" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="6" y="0" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Building">
+          <SubTypeID>building_glass_3x2</SubTypeID>
+          <DisplayName>Glass Pane 3x2</DisplayName>
+          <pathSprite>Sprites/glass</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <entityID>0</entityID>
+          <blockLocation x="6" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+      </Blocks>
+      <VisualLayer>0</VisualLayer>
+      <Flippable>true</Flippable>
+      <Max>
+        <x>0</x>
+        <y>0</y>
+      </Max>
+      <Min>
+        <x>0</x>
+        <y>0</y>
+      </Min>
+      <jointLocation>
+        <x>0</x>
+        <y>0</y>
+      </jointLocation>
+    </Blueprint>
+  </Blueprints>
+  <blueprintSubTypeIdList />
+</Definitions>
