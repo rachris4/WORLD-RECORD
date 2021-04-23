@@ -306,7 +306,7 @@ public class ProjectileManager : MonoBehaviour
         Vector3 eulerAngs = direction.eulerAngles;
         float rotz = eulerAngs.z;
 
-        rotz += (RandomSet[index] - 0.5f) * maxAngle;
+        rotz += 2*(RandomSet[index] - 0.5f) * maxAngle;
 
         return Quaternion.Euler(eulerAngs.x, eulerAngs.y, rotz);
     }

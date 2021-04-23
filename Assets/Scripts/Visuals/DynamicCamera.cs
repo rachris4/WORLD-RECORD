@@ -11,7 +11,7 @@ public class DynamicCamera : MonoBehaviour
     public const float lowerYbound = -30f;
     public const float upperYbound = 30f;
 
-    public Vector3 target;
+    public Vector3 target = new Vector3(0f,0f,0f);
     public bool isFlipped;
 
     void Start()
@@ -28,7 +28,7 @@ public class DynamicCamera : MonoBehaviour
     void UpdateDynamicCamera()
     {
         float AR = Screen.width / Screen.height;
-        Vector3 mouse = Utilities.GetWorldPositionOnPlane(new Vector3(Input.mousePosition.x, 0f, 0f), 0f);
+        Vector3 mouse = target;//Utilities.GetWorldPositionOnPlane(new Vector3(Input.mousePosition.x, 0f, 0f), 0f);
         Vector3 loc = Vector3.zero;
 
         if (!isFlipped)
@@ -60,7 +60,8 @@ public class DynamicCamera : MonoBehaviour
                 loc = limit;
             }
         }
-
+        if (float.IsNaN(loc.x))
+            loc.x = 0f;
         loc.y = yDist;
         loc.z = zDist;
 

@@ -9,6 +9,7 @@ using System.IO;
 public class DefinitionManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
     public static DefinitionSet definitions;
 
     //public int GetNewEntityId()
@@ -42,8 +43,9 @@ public class DefinitionManager : MonoBehaviour
 [XmlRoot(ElementName = "Definitions")]
 public class DefinitionSet
 {
-    private static string definitionPath = @"F:\untystuff\WORLD RECORD\Assets\Data\Definitions";
-    private static string blueprintPath = @"F:\untystuff\WORLD RECORD\Assets\Data\Blueprints";
+    public static string definitionPath = Utilities.PathCombine(Application.streamingAssetsPath,@"\Data\Definitions"); //@"F:\untystuff\WORLD RECORD\Assets\Data\Definitions";
+    public static string blueprintPath = Utilities.PathCombine(Application.streamingAssetsPath, @"\Data\Blueprints");
+    public static string ensemblePath = Utilities.PathCombine(Application.streamingAssetsPath, @"\Data\BodyBlueprints"); //@"F:\untystuff\WORLD RECORD\Assets\Data\BodyBlueprints";
 
 
 
@@ -87,11 +89,31 @@ public class DefinitionSet
     public HashSet<string> blueprintSubTypeIdList = new HashSet<string>();
     [XmlIgnore]
     public Dictionary<string, BodyPart> blueprintDict = new Dictionary<string, BodyPart>();
+
+    [XmlArray("BlueprintBodies")]
+    [XmlArrayItem("BlueprintBody", typeof(BodyEnsemble))]
+    public HashSet<BodyEnsemble> blueprintbodies = new HashSet<BodyEnsemble>();
+    public HashSet<string> blueprintbodiesSubTypeIdList = new HashSet<string>();
+    [XmlIgnore]
+    public Dictionary<string, BodyEnsemble> blueprintbodiesDict = new Dictionary<string, BodyEnsemble>();
+
+
+
+
+    public void Update()
+    { 
+    }
+
+
+
+
     [XmlIgnore]
     public Dictionary<string, HashSet<BlockDefinition>> blockCategories = new Dictionary<string, HashSet<BlockDefinition>>();
 
     public void Initialize()
     {
+        Debug.Log(definitionPath);
+
         InitializeBlockCategories();
 
         DirectoryInfo dir = new DirectoryInfo(definitionPath);
@@ -172,32 +194,6 @@ public class DefinitionSet
         dir = new DirectoryInfo(blueprintPath);
         var folders = dir.GetDirectories();
 
-        /* deprecated, now in folders
-        info = dir.GetFiles("*.xml");
-
-        foreach (FileInfo f in info)
-        {
-            //Debug.Log(f.FullName);
-            DefinitionSet temp = DefinitionSet.Load(f.FullName);
-            if (temp == null)
-                continue;
-            foreach (BodyPart item in temp.blueprints)
-            {
-                if (blueprintSubTypeIdList.Contains(item.SubTypeID))
-                {
-                    Debug.Log("SKREECH! Subtypeids clashed. Idiot.");
-                    continue;
-                }
-                //blueprintDict.Add(item.SubTypeID, item);
-                blueprintSubTypeIdList.Add(item.SubTypeID);
-                blueprints.Add(item);
-                blueprintDict.Add(item.SubTypeID, item);
-
-                item.Save(item.SubTypeID,true);
-
-            }
-        }*/
-
         foreach (var fold in folders)
         {
             info = fold.GetFiles("*.xml");
@@ -212,13 +208,41 @@ public class DefinitionSet
                 {
                     if (blueprintSubTypeIdList.Contains(item.SubTypeID))
                     {
-                        Debug.Log("SKREECH! Subtypeids clashed. Idiot.");
+                        Debug.Log("SKREECH! blueprint Subtypeids clashed. Idiot.");
                         continue;
                     }
                     //blueprintDict.Add(item.SubTypeID, item);
                     blueprintSubTypeIdList.Add(item.SubTypeID);
                     blueprints.Add(item);
                     blueprintDict.Add(item.SubTypeID, item);
+                }
+            }
+        }
+
+        dir = new DirectoryInfo(ensemblePath);
+        folders = dir.GetDirectories();
+
+        foreach (var fold in folders)
+        {
+            info = fold.GetFiles("*.xml");
+
+            foreach (FileInfo f in info)
+            {
+                //Debug.Log(f.FullName);
+                DefinitionSet temp = DefinitionSet.Load(f.FullName);
+                if (temp == null)
+                    continue;
+                foreach (BodyEnsemble item in temp.blueprintbodies)
+                {
+                    if (blueprintbodiesSubTypeIdList.Contains(item.SubTypeID))
+                    {
+                        Debug.Log("SKREECH! Blueprint body Subtypeids clashed. Idiot.");
+                        continue;
+                    }
+                    //blueprintDict.Add(item.SubTypeID, item);
+                    blueprintbodiesSubTypeIdList.Add(item.SubTypeID);
+                    blueprintbodies.Add(item);
+                    blueprintbodiesDict.Add(item.SubTypeID, item);
                 }
             }
         }

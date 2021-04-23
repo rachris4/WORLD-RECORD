@@ -30,7 +30,8 @@ public class Disposable : MonoBehaviour
     public void Delete()
     {
         ExplosionScript.scraps.Remove(this);
-        Destroy(gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D col)

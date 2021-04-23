@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BlockDefinitions />
+  <SubTypeIdList />
+  <ProjectileDefinitions />
+  <projectileSubTypeList />
+  <ProjectileWeaponDefinitions />
+  <projectileWeaponSubTypeList />
+  <EnergyWeaponDefinitions />
+  <energyWeaponSubtypeIDList />
+  <Blueprints>
+    <Blueprint TypeID="Robot">
+      <SubTypeID>grinder_prefab</SubTypeID>
+      <BuildPosition x="0" y="0" z="0" />
+      <Blocks>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="3" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <entityID>0</entityID>
+          <blockLocation x="3" y="2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="3" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="Armor">
+          <SubTypeID>armor_square</SubTypeID>
+          <DisplayName>Square Armor</DisplayName>
+          <pathSprite>Sprites/block</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <entityID>0</entityID>
+          <blockLocation x="3" y="4" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="MeleePiercer">
+          <SubTypeID>basic_blade</SubTypeID>
+          <DisplayName>Simple Blade 2x1</DisplayName>
+          <pathSprite>Sprites/blade2x1</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <MeleeProperties Type="blade">
+            <TotalDamage>100</TotalDamage>
+            <TotalHits>2</TotalHits>
+            <ForcePerImpale>20</ForcePerImpale>
+          </MeleeProperties>
+          <entityID>0</entityID>
+          <blockLocation x="2" y="1.5" />
+          <rotation>270</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="MeleePiercer">
+          <SubTypeID>basic_blade</SubTypeID>
+          <DisplayName>Simple Blade 2x1</DisplayName>
+          <pathSprite>Sprites/blade2x1</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <MeleeProperties Type="blade">
+            <TotalDamage>100</TotalDamage>
+            <TotalHits>2</TotalHits>
+            <ForcePerImpale>20</ForcePerImpale>
+          </MeleeProperties>
+          <entityID>0</entityID>
+          <blockLocation x="4.5" y="2" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="MeleePiercer">
+          <SubTypeID>basic_blade</SubTypeID>
+          <DisplayName>Simple Blade 2x1</DisplayName>
+          <pathSprite>Sprites/blade2x1</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <MeleeProperties Type="blade">
+            <TotalDamage>100</TotalDamage>
+            <TotalHits>2</TotalHits>
+            <ForcePerImpale>20</ForcePerImpale>
+          </MeleeProperties>
+          <entityID>0</entityID>
+          <blockLocation x="4" y="4.5" />
+          <rotation>90</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="MeleePiercer">
+          <SubTypeID>basic_blade</SubTypeID>
+          <DisplayName>Simple Blade 2x1</DisplayName>
+          <pathSprite>Sprites/blade2x1</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <MeleeProperties Type="blade">
+            <TotalDamage>100</TotalDamage>
+            <TotalHits>2</TotalHits>
+            <ForcePerImpale>20</ForcePerImpale>
+          </MeleeProperties>
+          <entityID>0</entityID>
+          <blockLocation x="1.5" y="4" />
+          <rotation>180</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <refIndex>0</refIndex>
+        </Block>
+        <Block TypeID="JointRotor">
+          <SubTypeID>simple_ball</SubTypeID>
+          <DisplayName>Joint Rotor</DisplayName>
+          <pathSprite>Sprites/jointball</pathSprite>
+          <isSolid>false</isSolid>
+          <SpriteOffset x="0" y="0" />
+          <weapon />
+          <Mass>0</Mass>
+          <JointProperties>
+            <Mirror>false</Mirror>
+            <rotationMax>0</rotationMax>
+            <rotationMin>0</rotationMin>
+            <angularDampening>0</angularDampening>
+            <positionDampening>0</positionDampening>
+          </JointProperties>
+          <entityID>0</entityID>
+          <blockLocation x="3" y="3" />
+          <rotation>0</rotation>
+          <transformScale x="1" y="1" z="1" />
+          <HexVector x="0" y="0" z="0" />
+          <HexBlock>false</HexBlock>
+          <EditorProperties>
+            <Keybinds>
+              <Keybind Name="Backward" Data="a" />
+              <Keybind Name="Forward" Data="d" />
+            </Keybinds>
+            <BlockData>
+              <BlockDatum Name="Type" Data="Spin" />
+              <BlockDatum Name="Strength" Data="800" />
+              <BlockDatum Name="Snappiness" Data="1" />
+              <BlockDatum Name="Degree Offset" Data="0" />
+              <BlockDatum Name="Motion Time" Data="0" />
+              <BlockDatum Name="Time Offset" Data="0" />
+            </BlockData>
+          </EditorProperties>
+          <refIndex>0</refIndex>
+        </Block>
+      </Blocks>
+      <Controller ControllerType="Spin">
+        <StrengthMod>800</StrengthMod>
+        <SpeedMod>80</SpeedMod>
+        <P>1</P>
+        <I>0.333333343</I>
+        <D>0.0333333351</D>
+        <Rotation>0</Rotation>
+        <Border>0</Border>
+        <SpeedLimit>160</SpeedLimit>
+        <Wavelength>0</Wavelength>
+        <Offset>0</Offset>
+        <KeybindFWD>d</KeybindFWD>
+        <KeybindBCK>a</KeybindBCK>
+      </Controller>
+      <VisualLayer>0</VisualLayer>
+      <Flippable>true</Flippable>
+      <Max>
+        <x>0</x>
+        <y>0</y>
+      </Max>
+      <Min>
+        <x>0</x>
+        <y>0</y>
+      </Min>
+      <jointLocation>
+        <x>0</x>
+        <y>0</y>
+      </jointLocation>
+    </Blueprint>
+  </Blueprints>
+  <blueprintSubTypeIdList />
+  <BlueprintBodies />
+  <blueprintbodiesSubTypeIdList />
+</Definitions>

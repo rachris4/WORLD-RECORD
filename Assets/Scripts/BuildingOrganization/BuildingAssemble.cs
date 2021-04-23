@@ -50,9 +50,16 @@ public class BuildingAssemble : MonoBehaviour
                 Vector3 scale = rubble.transform.localScale;
                 scale.x = (max.x - min.x+1)/8;
                 rubble.transform.localScale = scale;
+
+                /*
+
                 SpriteRenderer blockRend = rubble.AddComponent<SpriteRenderer>();
                 blockRend.sprite = Resources.Load<Sprite>("Sprites/Rubble");
                 blockRend.sortingOrder = -301;
+
+                */
+
+
                 //blockRend.color = new Color(0.6f, 0.6f, 0.6f, 1f);
                 /*
                 gameObject.layer = 8;

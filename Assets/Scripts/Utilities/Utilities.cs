@@ -2,9 +2,38 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public static class Utilities
 {
+
+    public static List<GameObject> _ddolObjects = new List<GameObject>();
+
+    public static void DontDestroyOnLoad(this GameObject go)
+    {
+        UnityEngine.Object.DontDestroyOnLoad(go);
+        _ddolObjects.Add(go);
+    }
+
+    public static void DestroyAll()
+    {
+        foreach (var go in _ddolObjects)
+            if (go != null)
+                UnityEngine.Object.Destroy(go);
+
+        _ddolObjects.Clear();
+    }
+
+    public static string PathCombine(string path1, string path2)
+    {
+        if (Path.IsPathRooted(path2))
+        {
+            path2 = path2.TrimStart(Path.DirectorySeparatorChar);
+            path2 = path2.TrimStart(Path.AltDirectorySeparatorChar);
+        }
+
+        return Path.Combine(path1, path2);
+    }
     public static Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);

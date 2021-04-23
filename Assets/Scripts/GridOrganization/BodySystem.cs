@@ -73,8 +73,9 @@ public class LimbUnity : MonoBehaviour
 
 public class BodyPart : DefinitionBase
 {
-    public static string blueprintPath = @"F:\untystuff\WORLD RECORD\Assets\Data\Blueprints\";
-
+    //public static string blueprintPath = @"F:\untystuff\WORLD RECORD\Assets\Data\Blueprints\";
+    [XmlElement("BuildPosition")]
+    public SerializableVector3 BuildPosition;
     [XmlArray("Blocks")]
     [XmlArrayItem("Block", typeof(Block))]
     public List<Block> blockList = new List<Block>();
@@ -90,6 +91,7 @@ public class BodyPart : DefinitionBase
     public Vector2Int Max;
     public Vector2Int Min;
 
+    public BodyEnsemble body;
     private List<MeshTriangle> alienTris = new List<MeshTriangle>();
     private HashSet<HashSet<GameObject>> alienTrisMesh = new HashSet<HashSet<GameObject>>();
 
@@ -99,7 +101,7 @@ public class BodyPart : DefinitionBase
     private const float notAlienSpringConstant = 100f;
 
 
-    public GameObject CreateLimbUnity(GameObject entparent = null, int layerAddition = 0, bool wasMirrored = false, GameObject overParent = null)
+    public GameObject CreateLimbUnity(GameObject entparent = null, int layerAddition = 0, bool wasMirrored = false, GameObject overParent = null, BodyEnsemble b = null)
     {
 
         string name = "";
@@ -109,6 +111,8 @@ public class BodyPart : DefinitionBase
             name += "mirrord_"; 
         }
 
+        if (b != null)
+            body = b;
 
         GameObject limb = new GameObject(name + SubTypeID);
 
@@ -116,6 +120,7 @@ public class BodyPart : DefinitionBase
         if (overParent != null)
         {
             limb.transform.parent = overParent.transform;
+            limb.transform.localPosition = Vector3.zero;
             limbobj.overParent = overParent;
         }
         else
@@ -146,6 +151,7 @@ public class BodyPart : DefinitionBase
             if(parentlimbobj != null)
             {
                 limb.transform.parent = parentlimbobj.overParent.transform;
+                limb.transform.localPosition = Vector3.zero;
                 limbobj.overParent = parentlimbobj.overParent;
                 limb.layer = limbobj.overParent.layer;
                 limb.transform.position += limbobj.overParent.transform.position;
@@ -175,10 +181,11 @@ public class BodyPart : DefinitionBase
         rigidbody.useAutoMass = true;
         var currentRend = limbSprite.AddComponent<SpriteRenderer>();
         currentRend.sprite = Resources.Load<Sprite>("Sprites/BoundingBox");
+        LimbController limbController;
 
         if (Controller != null)
         {
-            var limbController = limb.AddComponent<LimbController>();
+            limbController = limb.AddComponent<LimbController>();
             limbController.Initialize(Controller);
             limbController.blockIntegrity = blockList.Count;
             limbController.offset = controllerOffset;
@@ -194,7 +201,7 @@ public class BodyPart : DefinitionBase
 
         foreach (Block square in blockList)
         {
-            GameObject newBlock = square.CreateBlockUnity(limb, currentRend);
+            GameObject newBlock = square.CreateBlockUnity(limb, currentRend, this);
 
             if(square.HexBlock)
             {
@@ -494,8 +501,8 @@ public class BodyPart : DefinitionBase
     public void Save(string path, bool overwrite = false)
     {
 
-        Vector3 min = Vector3.zero;
-        Vector3 max = Vector3.zero;
+        Vector3 min = new Vector3(1000, 1000, 0);
+        Vector3 max = new Vector3(-1000, -1000, 0);
         Vector3 loc = Vector3.zero;
 
         foreach (Block bloq in blockList)
@@ -533,7 +540,7 @@ public class BodyPart : DefinitionBase
             bloq.blockLocation = new SerializableVector2(loc);
         }
 
-            string dir = Path.Combine(blueprintPath, path);
+            string dir = Path.Combine(DefinitionSet.blueprintPath, path);
         //path = Path.Combine(blueprintPath, path);
 
         for(int j = 1; j < 20; j++)
@@ -555,7 +562,7 @@ public class BodyPart : DefinitionBase
                     string text = path.Substring(0, path.Length - i.ToString().Length);
                     path = text + (i + 1);
                 }
-                dir = Path.Combine(blueprintPath, path);
+                dir = Path.Combine(DefinitionSet.blueprintPath, path);
             }
             else
                 break;
@@ -581,7 +588,7 @@ public class BodyPart : DefinitionBase
     {
         //path += ".xml";
         var serializer = new XmlSerializer(typeof(DefinitionSet));
-        using (var stream = new FileStream(Path.Combine(Path.Combine(blueprintPath, path), path + ".xml"), FileMode.Open))
+        using (var stream = new FileStream(Path.Combine(Path.Combine(DefinitionSet.blueprintPath, path), path + ".xml"), FileMode.Open))
         {
             return serializer.Deserialize(stream) as DefinitionSet;
         }
@@ -619,6 +626,12 @@ public class LimbControllerDefinition
     public int Wavelength;
     [XmlElement("Offset")]
     public float Offset;
+    [XmlElement("KeybindFWD")]
+    public string fwd;
+    [XmlElement("KeybindBCK")]
+    public string bck;
+    [XmlElement("ParentName")]
+    public string ParentName;
 }
 
 

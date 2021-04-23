@@ -55,6 +55,8 @@ public class LoadBoard : MonoBehaviour
         foreach (var fold in folders)
         {
             var info = fold.GetFiles("*.xml");
+            if (info.Length == 0)
+                continue;
             string subtypeID = info[0].Name;
             subtypeID = subtypeID.Replace(".xml", "");
             Debug.Log(subtypeID);
@@ -134,7 +136,7 @@ public class LoadBoard : MonoBehaviour
     public void StartLoad()
     {
         loadBoard.SetActive(true); //= false;
-        LoadBlueprints(BodyPart.blueprintPath);
+        LoadBlueprints(DefinitionSet.blueprintPath);
     }
 
     public void ClickFolder()

@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridAssembly : MonoBehaviour
 {
     [SerializeField]
-    private string LoadedSubTypeID = "HumanTorso";
+    private string LoadedSubTypeID;
     [SerializeField]
     private bool flipOnInit = false;
     [SerializeField]
     private bool isPlayer = false;
 
-    private bool initd = false;
+    public bool initd = false;
     private GameObject cam;
-
+    public BodyEnsemble body;
     private int tick = 0;
 
     [HideInInspector]
@@ -26,11 +27,15 @@ public class GridAssembly : MonoBehaviour
     void Update()
     {
         if (!initd)
-            Initialize();
-        
-        if(isPlayer)
         {
-            UpdateCamera();
+            Initialize();
+            Debug.Log("trying...");
+            return;
+        }
+
+        if (isPlayer)
+        {
+            //UpdateCamera();
         }
 
         if(tick > 10 && bpList.Count > 0 && !alienUpdated)
@@ -55,6 +60,9 @@ public class GridAssembly : MonoBehaviour
         {
             FlipChassis();
         }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1 && initd)
+            Destroy(this);
 
         tick++;
     }
@@ -102,8 +110,9 @@ public class GridAssembly : MonoBehaviour
     void FlipChassis() // oh jesus
     {
 
-        DynamicCamera dyn = cam.GetComponent<DynamicCamera>();
-        dyn.isFlipped = !dyn.isFlipped;
+        //DynamicCamera dyn = cam.GetComponent<DynamicCamera>();
+        //if(dyn != null)
+        //    dyn.isFlipped = !dyn.isFlipped;
 
         HashSet<Rigidbody2D> rigids = new HashSet<Rigidbody2D>();
         Utilities.FindChildRigidBodies(gameObject, ref rigids,99);
@@ -150,6 +159,7 @@ public class GridAssembly : MonoBehaviour
 
     void UpdateCamera()
     {
+
         DynamicCamera dyn = cam.GetComponent<DynamicCamera>();
         if (dyn == null)
             return;
@@ -170,18 +180,16 @@ public class GridAssembly : MonoBehaviour
     void Initialize()
     {
 
-        if (DefinitionManager.definitions.blueprints == null)
+        if (DefinitionManager.definitions.blueprints == null || SceneManager.GetActiveScene().buildIndex == 1)
             return;
 
         cam = Utilities.FindMainCamera();
-
-        BodyPart limbdef;
-        DefinitionManager.definitions.blueprintDict.TryGetValue(LoadedSubTypeID, out limbdef);
-        if (limbdef != null)
+        if(body != null)
         {
-            GameObject limb = limbdef.CreateLimbUnity(null,-100,false,gameObject);
-            limb.layer = gameObject.layer;
+            CreateFromEnsemble(body);
         }
+        else if (LoadedSubTypeID != null)
+            CreateFromLimb(LoadedSubTypeID);
 
         HashSet<Rigidbody2D> rigids = new HashSet<Rigidbody2D>();
         Utilities.FindChildRigidBodies(gameObject, ref rigids,1);
@@ -194,5 +202,29 @@ public class GridAssembly : MonoBehaviour
         FixOverParentTranslation(rigids);
         
         initd = true;
+    }
+
+    private void CreateFromEnsemble(BodyEnsemble body)
+    {
+        foreach(BodyPart bp in body.bodyParts)
+        {
+            if(bp.SubTypeID == body.PrimeBodypart)
+            {
+                GameObject limb = bp.CreateLimbUnity(null, -100, false, gameObject,body);
+                limb.layer = gameObject.layer;
+                break;
+            }
+        }
+    }
+
+    private void CreateFromLimb(string LoadedSubTypeID)
+    {
+        BodyPart limbdef;
+        DefinitionManager.definitions.blueprintDict.TryGetValue(LoadedSubTypeID, out limbdef);
+        if (limbdef != null)
+        {
+            GameObject limb = limbdef.CreateLimbUnity(null, -100, false, gameObject, body);
+            limb.layer = gameObject.layer;
+        }
     }
 }

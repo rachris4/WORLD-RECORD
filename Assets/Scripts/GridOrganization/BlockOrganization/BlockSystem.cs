@@ -61,6 +61,7 @@ public class BlockSystem : MonoBehaviour
         j.AlienProperties = newBlockDef.AlienProperties;
         j.TurretProperties = newBlockDef.TurretProperties;
         j.BlockCategory = newBlockDef.BlockCategory;
+        j.Description = newBlockDef.Description;
 
         return j;
 
@@ -82,6 +83,8 @@ public class Block : BlockDefinition
     public SerializableVector3 HexVector;
     [XmlElement("HexBlock")]
     public bool HexBlock;
+    [XmlElement("EditorProperties")]
+    public EditorProperties EditorProperties;
     [XmlIgnore]
     private Destroyable destroyable;
 
@@ -93,10 +96,11 @@ public class Block : BlockDefinition
         ProjectileWeaponDefinition def;
         if (DefinitionManager.definitions.projectileWeaponDict.TryGetValue(Weapon, out def))
         {
-            //Debug.Log(TypeID);
             var wep = obj.AddComponent<ProjectileWeapon>();
             wep.Initialize(def);
-            return;
+            if (EditorProperties == null)
+                return;
+            wep.keybind = EditorProperties.Keybinds[0].Data;
         }
         EnergyWeaponDefinition laserdef;
         if (DefinitionManager.definitions.energyWeaponDict.TryGetValue(Weapon, out laserdef))
@@ -104,7 +108,9 @@ public class Block : BlockDefinition
             //Debug.Log(TypeID);
             var wep = obj.AddComponent<EnergyWeapon>();
             wep.Initialize(laserdef);
-            return;
+            if (EditorProperties == null)
+                return;
+            wep.keybind = EditorProperties.Keybinds[0].Data;
         }
     }
 
@@ -146,17 +152,42 @@ public class Block : BlockDefinition
         {
             foreach (string part in JointProperties.Bodyparts)
             {
-                BodyPart limbdef;
+                BodyPart newLimb = new BodyPart();
+                bool gotem = false;
 
-                DefinitionManager.definitions.blueprintDict.TryGetValue(part, out limbdef);
-                if (limbdef == null)
-                    continue;
+                if (limbdef.body != null)
+                {
+                    foreach (BodyPart bp in limbdef.body.bodyParts)
+                    {
+                        if (bp.SubTypeID == part)
+                        {
+                            newLimb = bp;
+                            gotem = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                    Debug.Log("hereshesads!~"); 
+
+                if(!gotem)
+                {
+                    DefinitionManager.definitions.blueprintDict.TryGetValue(part, out newLimb);
+                    if (newLimb == null)
+                        continue;
+                }
+                
                 //else
                 //    Debug.Log("Joint Properties failed.");
 
                 int layerAddition = 4;
 
-                GameObject limb = limbdef.CreateLimbUnity(parent, layerAddition, i > 0);
+                GameObject limb;
+
+                if (limbdef.body != null)
+                    limb = newLimb.CreateLimbUnity(parent, layerAddition, i > 0, null, limbdef.body);
+                else
+                    limb = newLimb.CreateLimbUnity(parent, layerAddition, i > 0);
                 //limb.transform.parent = parent.transform;
 
                 var limbobj = limb.GetComponent<LimbUnity>();
@@ -165,7 +196,7 @@ public class Block : BlockDefinition
 
                 GameObject limbjoint = new GameObject(limb.name + "_joint");
                 limbjoint.transform.parent = limb.transform;
-                limbjoint.transform.localPosition = limbdef.jointLocation;
+                limbjoint.transform.localPosition = newLimb.jointLocation;
                 var rend = limbjoint.AddComponent<SpriteRenderer>();
                 rend.sprite = Resources.Load<Sprite>(JointProperties.JointPathSprite);
                 rend.sortingOrder = limbobj.SortingOrder + layerAddition / 2;
@@ -174,7 +205,7 @@ public class Block : BlockDefinition
                 hinge.autoConfigureConnectedAnchor = false;
                 hinge.connectedBody = limb.GetComponent<Rigidbody2D>();
                 hinge.anchor = obj.transform.localPosition;
-                hinge.connectedAnchor = limbdef.jointLocation;
+                hinge.connectedAnchor = newLimb.jointLocation;
                 hinge.useLimits = true;
                 hinge.limits = new JointAngleLimits2D { max = JointProperties.rotationMax, min = JointProperties.rotationMin };
 
@@ -202,7 +233,20 @@ public class Block : BlockDefinition
 
     public void InitializeGrappleGun(GameObject obj)
     {
-        obj.AddComponent<GrappleGun>();
+        var gg = obj.AddComponent<GrappleGun>();
+        if (EditorProperties == null)
+            return;
+        gg.keybind = EditorProperties.Keybinds[0].Data;
+
+    }
+
+    public void InitializeGyroscope(GameObject obj)
+    {
+        var gs = obj.AddComponent<Gyroscope>();
+        if (EditorProperties == null)
+            return;
+        //gg.keybind = EditorProperties.Keybinds[0].Data;
+
     }
 
     public void InitializeThrusterRotator(GameObject obj)
@@ -222,7 +266,11 @@ public class Block : BlockDefinition
 
     public void InitializeThruster(GameObject obj)
     {
-        obj.AddComponent<FixedThruster>();
+        var tt = obj.AddComponent<FixedThruster>();
+        if (EditorProperties == null)
+            return;
+        tt.keybind = EditorProperties.Keybinds[0].Data;
+        tt.toggle = EditorProperties.Keybinds[1].Data;
     }
 
     public void InitializeMeleePiercer(GameObject obj)
@@ -268,6 +316,10 @@ public class Block : BlockDefinition
             case "Core":
                 InitializeCoreBlock(obj);
                 break;
+            case "Gyro":
+                InitializeGyroscope(obj);
+                break;
+
             default:
                 break;
         }
@@ -276,6 +328,10 @@ public class Block : BlockDefinition
 
     public GameObject CreateBlockUnity(GameObject parent = null, SpriteRenderer currentRend = null, BodyPart limb = null)   
     {
+
+        if (limb != null)
+            limbdef = limb;
+
         GameObject newBlock = new GameObject(SubTypeID);
         newBlock.transform.parent = parent.transform;
         newBlock.layer = parent.layer;
@@ -297,8 +353,7 @@ public class Block : BlockDefinition
         Weapon = otherSquare.Weapon;
 
 
-        if (limb != null)
-            limbdef = limb;
+        
 
         newBlock.transform.localScale = transformScale.ToVector3();
         newBlock.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
@@ -383,6 +438,8 @@ public class BlockDefinition : DefinitionBase
     public string pathSprite;
     [XmlElement("flippedPathSprite")]
     public string flippedPathSprite;
+    [XmlElement("Description")]
+    public string Description;
     [XmlElement("isSolid")]
     public bool isSolid;
     [XmlElement("BlockCategory")]
@@ -416,6 +473,66 @@ public class TurretProperties
     public float RotationSpeed;
     [XmlElement("TurretOffset")]
     public SerializableVector2 TurretOffset;
+}
+
+public class EditorProperties
+{
+
+    [XmlArray("Keybinds")]
+    [XmlArrayItem("Keybind", typeof(GenericEditorInput))]
+    public List<GenericEditorInput> Keybinds = new List<GenericEditorInput>();
+
+    [XmlArray("BlockData")]
+    [XmlArrayItem("BlockDatum", typeof(GenericEditorInput))]
+    public List<GenericEditorInput> BlockData = new List<GenericEditorInput>();
+
+    public string DebugLine()
+    {
+        string debug = "text : [ ";
+
+        if (BlockData.Count > 0)
+        {
+            for (int j = 0; j < BlockData.Count; j++)
+            {
+                GenericEditorInput input = BlockData[j];
+                debug += " (" + BlockData[j].Name + "," + BlockData[j].Data + ")";
+
+            }
+        }
+
+
+        debug += " ] \n bind : [ ";
+
+        if (Keybinds.Count > 0)
+        {
+            for (int j = 0; j < Keybinds.Count; j++)
+            {
+                GenericEditorInput input = Keybinds[j];
+                debug += " (" + Keybinds[j].Name + "," + Keybinds[j].Data + ")";
+
+            }
+        }
+
+        debug += " ]";
+
+        return debug;
+    }
+
+}
+
+public struct GenericEditorInput
+{
+    [XmlAttribute("Name")]
+    public string Name;
+    [XmlAttribute("Data")]
+    public string Data;
+
+    
+    public GenericEditorInput(string n, string d)
+    {
+        Name = n;
+        Data = d;
+    }
 }
 
 public class MeleeProperties

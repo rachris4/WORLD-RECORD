@@ -36,6 +36,9 @@ public class LimbController : MonoBehaviour
     private PID pid;
     private PID apid;
 
+    public string fwd = "d";
+    public string bck = "a";
+
     public int blockIntegrity = 1;
     public float currentIntegrity = 0;
     private int tick;
@@ -63,6 +66,14 @@ public class LimbController : MonoBehaviour
         pid = new PID(P, I, D);
         apid = new PID(P, I, D);
         initd = true;
+
+        if(def.fwd != null && def.bck != null)
+        {
+            fwd = def.fwd;
+            bck = def.bck;
+        }
+
+
         if(Type == "Foot")
         {
             foreach(Transform child in gameObject.transform)
@@ -109,6 +120,9 @@ public class LimbController : MonoBehaviour
         }
         currentIntegrity /= blockIntegrity;
 
+        if (pid == null)
+            pid = new PID(P, I, D);
+
         pid.pFactor = P;
         pid.dFactor = D;
         pid.iFactor = I;
@@ -120,7 +134,7 @@ public class LimbController : MonoBehaviour
                 GravityAlign();
                 break;
 
-            case "MouseTrack":
+            case "Mouse":
 
                 if (parent != null)
                     MouseTrack();
@@ -135,12 +149,18 @@ public class LimbController : MonoBehaviour
                 if (parent != null)
                     Stable();
                 break;
+
             case "Spin":
 
                 Spin();
                 break;
 
-            case "Thigh":
+            case "Rotate":
+
+                Rotate();
+                break;
+
+            case "Seesaw":
 
                 if (parent != null)
                     Thigh();
@@ -161,11 +181,11 @@ public class LimbController : MonoBehaviour
         }
 
         bool move = false;
-        if (Input.GetKey("d"))
+        if (fwd != null && Input.GetKey(fwd))
         {
             //move = true;
         }
-        if (Input.GetKey("a"))
+        if (bck != null && Input.GetKey(bck))
         {
             //move = true;
         }
@@ -227,11 +247,11 @@ public class LimbController : MonoBehaviour
         }
 
         int direction = 0;
-        if (Input.GetKey("d"))
+        if (fwd != null && Input.GetKey(fwd))
         {
             direction++;
         }
-        if (Input.GetKey("a"))
+        if (bck != null && Input.GetKey(bck))
         {
             direction--;
 
@@ -274,6 +294,47 @@ public class LimbController : MonoBehaviour
         joint.motor = motor;
     }
 
+    public void Rotate()
+    {
+        if (joint == null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        int direction = 0;
+        if (fwd != null && Input.GetKey(fwd))
+        {
+            direction++;
+        }
+        if (bck != null && Input.GetKey(bck))
+        {
+            direction--;
+
+        }
+        var motor = new JointMotor2D();
+
+        float displacement = parent.transform.rotation.eulerAngles.z + frontRotation;
+        float angle = gameObject.transform.rotation.eulerAngles.z + frontRotation;
+        float desiredAngle = angle + direction * Time.deltaTime * speedMod * 10;
+        if (direction == 0)
+        {
+            motor.motorSpeed = 0;//desiredAngle = displacement;
+        }
+
+        desiredAngle = Utilities.RealRotationZFloat(gameObject, desiredAngle);
+
+        joint.useMotor = true;
+        motor.motorSpeed = pid.Update(desiredAngle, angle, Time.deltaTime, speedLimit);
+        if(Mathf.Abs(motor.motorSpeed) > 100)
+        {
+            motor.motorSpeed /= Mathf.Abs(motor.motorSpeed);
+            motor.motorSpeed *= 100f;
+        }
+        motor.maxMotorTorque = 10 * strengthMod * currentIntegrity;
+        joint.motor = motor;
+    }
+
     public void Foot()
     {
         //gravity align checkcheck
@@ -282,11 +343,13 @@ public class LimbController : MonoBehaviour
         rigidBody.AddTorque(strengthMod* currentIntegrity * pid.Update(desiredAngle, angle, Time.deltaTime, speedLimit));
 
         int direction = 0;
-        if (Input.GetKey("d"))
+
+        
+        if (fwd != null && Input.GetKey(fwd))
         {
             direction++;
         }
-        if (Input.GetKey("a"))
+        if (bck != null && Input.GetKey(bck))
         {
             direction--;
         }
@@ -311,7 +374,7 @@ public class LimbController : MonoBehaviour
         //rigidBody.sharedMaterial.friction = 1f;
         //rigidBody.sharedMaterial.bounciness = -3000f;
 
-        if ((rigidBody.velocity.x > 0 && Input.GetKey("a")) || (rigidBody.velocity.x < 0 && Input.GetKey("d")))
+        if ((rigidBody.velocity.x > 0 && bck != null && Input.GetKey(bck)) || (rigidBody.velocity.x < 0 && fwd != null && Input.GetKey(fwd)))
         {
             //rigidBody.sharedMaterial.friction = 1f;
             //rigidBody.sharedMaterial.bounciness = 0f;
@@ -359,14 +422,18 @@ public class LimbController : MonoBehaviour
 
         joint.useMotor = true;
         var motor = new JointMotor2D();
+        /*
         if (inbd)
         {
-            motor.motorSpeed = pid.Update(desiredAngle, angle, Time.deltaTime, speedLimit);
         }
         else
         {
             motor.motorSpeed = 0;
-        }
+        }*/
+
+        motor.motorSpeed = pid.Update(desiredAngle, angle, Time.deltaTime, speedLimit);
+
+
         motor.maxMotorTorque = 10 * strengthMod * currentIntegrity;
         joint.motor = motor;
     }

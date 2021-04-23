@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5cec9bde433912e45884d82a0ee36c84
   - enabled: 1
+    path: Assets/Scenes/BuildRobot.unity
+    guid: 68924be6d8d8db749b14941165eb2ecf
+  - enabled: 1
+    path: Assets/Scenes/lab.unity
+    guid: b0eae73299f3fd64f9afcddb87a1d1f8
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 0230c64b6fe70ce4c95b4c2e48346a6d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BuildAlien.unity
     guid: 86521917fb970db4f95199b7371b4b9c
   m_configObjects: {}
